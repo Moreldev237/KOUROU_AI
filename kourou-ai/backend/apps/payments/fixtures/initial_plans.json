@@ -1,0 +1,66 @@
+[
+  {
+    "model": "payments.subscriptionplan",
+    "pk": 1,
+    "fields": {
+      "code": "mensuel-illimite",
+      "name": "Pass Mensuel Illimité",
+      "description": "Accès illimité au moteur IA (QCM, correction détaillée, tuteur) sur tous les concours pendant 30 jours.",
+      "exam": null,
+      "billing_cycle": "monthly",
+      "price_fcfa": 2500,
+      "duration_days": 30,
+      "is_unlimited_generation": true,
+      "is_active": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "payments.subscriptionplan",
+    "pk": 2,
+    "fields": {
+      "code": "trimestriel-illimite",
+      "name": "Pass Trimestriel Illimité",
+      "description": "Accès illimité pendant 90 jours sur tous les concours — le meilleur rapport prix/durée.",
+      "exam": null,
+      "billing_cycle": "monthly",
+      "price_fcfa": 6000,
+      "duration_days": 90,
+      "is_unlimited_generation": true,
+      "is_active": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "payments.subscriptionplan",
+    "pk": 3,
+    "fields": {
+      "code": "pack-enam",
+      "name": "Pack Concours ENAM",
+      "description": "Accès illimité de 60 jours, ciblé sur le programme du concours ENAM.",
+      "exam": 1,
+      "billing_cycle": "one_time",
+      "price_fcfa": 4000,
+      "duration_days": 60,
+      "is_unlimited_generation": true,
+      "is_active": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "payments.subscriptionplan",
+    "pk": 4,
+    "fields": {
+      "code": "pack-police",
+      "name": "Pack Concours Police (ENSP)",
+      "description": "Accès illimité de 60 jours, ciblé sur le programme du concours de la Police.",
+      "exam": 2,
+      "billing_cycle": "one_time",
+      "price_fcfa": 4000,
+      "duration_days": 60,
+      "is_unlimited_generation": true,
+      "is_active": true,
+      "order": 4
+    }
+  }
+]

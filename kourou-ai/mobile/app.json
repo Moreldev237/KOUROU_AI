@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "KOUROU AI",
+    "slug": "kourou-ai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "kourouai",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kourouai.app"
+    },
+    "android": {
+      "package": "com.kourouai.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#235AA4"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#122B6E"
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "extra": {
+      "router": {}
+    }
+  }
+}
