@@ -1,0 +1,306 @@
+[
+  {
+    "model": "exams.exam",
+    "pk": 1,
+    "fields": {
+      "name": "ENAM — Cycle A (Administrateurs Civils)",
+      "code": "enam-cycle-a",
+      "description": "Concours d'entrée à l'École Nationale d'Administration et de Magistrature, cycle des Administrateurs Civils.",
+      "organizing_body": "MINFOPRA",
+      "icon_emoji": "🏛️",
+      "color_hex": "#1B4F91",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 2,
+    "fields": {
+      "name": "Police — ENSP (Inspecteurs)",
+      "code": "police-ensp",
+      "description": "Concours d'entrée à l'École Nationale Supérieure de Police, cycle des Inspecteurs de Police.",
+      "organizing_body": "DGSN",
+      "icon_emoji": "🚓",
+      "color_hex": "#153274",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 3,
+    "fields": {
+      "name": "Douanes — Inspecteurs",
+      "code": "douanes-inspecteurs",
+      "description": "Concours de recrutement des Inspecteurs des Douanes.",
+      "organizing_body": "MINFI / Direction Générale des Douanes",
+      "icon_emoji": "🚢",
+      "color_hex": "#2466B2",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 4,
+    "fields": {
+      "name": "ENS — École Normale Supérieure",
+      "code": "ens",
+      "description": "Concours d'entrée à l'École Normale Supérieure (formation des enseignants).",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📘",
+      "color_hex": "#30B77E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 1,
+    "fields": {
+      "exam": 1,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 3,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 2,
+    "fields": {
+      "exam": 1,
+      "name": "Droit Public",
+      "description": "",
+      "coefficient": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 3,
+    "fields": {
+      "exam": 2,
+      "name": "Culture Générale et Actualité",
+      "description": "",
+      "coefficient": 2,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 4,
+    "fields": {
+      "exam": 2,
+      "name": "Droit Pénal et Procédure",
+      "description": "",
+      "coefficient": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 5,
+    "fields": {
+      "exam": 3,
+      "name": "Culture Générale Économique",
+      "description": "",
+      "coefficient": 2,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 6,
+    "fields": {
+      "exam": 3,
+      "name": "Droit et Réglementation Douanière",
+      "description": "",
+      "coefficient": 3,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 7,
+    "fields": {
+      "exam": 4,
+      "name": "Culture Générale et Pédagogie",
+      "description": "",
+      "coefficient": 2,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 8,
+    "fields": {
+      "exam": 4,
+      "name": "Méthodologie de la Dissertation",
+      "description": "",
+      "coefficient": 2,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 1,
+    "fields": {
+      "subject": 1,
+      "name": "Institutions de la République du Cameroun",
+      "syllabus_reference": "Constitution du 18 janvier 1996 révisée : organisation des pouvoirs exécutif, législatif et judiciaire ; rôle du Président de la République, du Parlement (Assemblée Nationale et Sénat), du Conseil Constitutionnel.",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 2,
+    "fields": {
+      "subject": 1,
+      "name": "Grands enjeux économiques et sociaux du Cameroun",
+      "syllabus_reference": "Stratégie Nationale de Développement (SND30), enjeux de la décentralisation, emploi des jeunes.",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 3,
+    "fields": {
+      "subject": 2,
+      "name": "Droit constitutionnel camerounais",
+      "syllabus_reference": "",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 4,
+    "fields": {
+      "subject": 2,
+      "name": "Organisation administrative territoriale",
+      "syllabus_reference": "Régions, départements, arrondissements ; déconcentration vs décentralisation.",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 5,
+    "fields": {
+      "subject": 3,
+      "name": "Sécurité publique et grands faits d'actualité",
+      "syllabus_reference": "",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 6,
+    "fields": {
+      "subject": 3,
+      "name": "Institutions républicaines et forces de défense",
+      "syllabus_reference": "",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 7,
+    "fields": {
+      "subject": 4,
+      "name": "Notions fondamentales de droit pénal camerounais",
+      "syllabus_reference": "Code pénal camerounais : infractions, peines, procédure.",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 8,
+    "fields": {
+      "subject": 4,
+      "name": "Déontologie et éthique policière",
+      "syllabus_reference": "",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 9,
+    "fields": {
+      "subject": 5,
+      "name": "Commerce extérieur et fiscalité douanière",
+      "syllabus_reference": "",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 10,
+    "fields": {
+      "subject": 5,
+      "name": "Zone CEMAC et intégration économique régionale",
+      "syllabus_reference": "Tarif Extérieur Commun CEMAC, libre circulation des biens.",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 11,
+    "fields": {
+      "subject": 6,
+      "name": "Code des douanes CEMAC",
+      "syllabus_reference": "",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 12,
+    "fields": {
+      "subject": 6,
+      "name": "Procédures de dédouanement",
+      "syllabus_reference": "",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 13,
+    "fields": {
+      "subject": 7,
+      "name": "Système éducatif camerounais",
+      "syllabus_reference": "Loi d'orientation de l'éducation, cycles primaire/secondaire/supérieur.",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 14,
+    "fields": {
+      "subject": 7,
+      "name": "Grands courants pédagogiques",
+      "syllabus_reference": "",
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 15,
+    "fields": {
+      "subject": 8,
+      "name": "Techniques de dissertation littéraire",
+      "syllabus_reference": "",
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.topic",
+    "pk": 16,
+    "fields": {
+      "subject": 8,
+      "name": "Analyse de texte et argumentation",
+      "syllabus_reference": "",
+      "order": 2
+    }
+  }
+]

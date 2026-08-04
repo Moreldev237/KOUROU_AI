@@ -1,0 +1,15 @@
+-r base.txt
+
+# Confort de développement
+django-extensions==3.2.3
+ipython==8.30.0
+
+# Qualité de code
+flake8==7.1.1
+black==24.10.0
+
+# Tests
+pytest==8.3.4
+pytest-django==4.9.0
+pytest-cov==6.0.0
+factory-boy==3.3.1

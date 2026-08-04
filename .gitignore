@@ -1,0 +1,43 @@
+# --- Python / Django (backend/) ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.sqlite3
+.venv/
+venv/
+env/
+.env
+!.env.example
+.pytest_cache/
+.coverage
+htmlcov/
+staticfiles/
+media/
+*.egg-info/
+
+# --- Node / Expo (mobile/) ---
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.env
+.env.local
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# --- Éditeurs / OS ---
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+# --- Docker ---
+postgres_data/
