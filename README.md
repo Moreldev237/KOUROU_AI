@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="mobile/assets/logo-source.png" width="120" alt="KOUROU AI" />
+  <img src="/kourou-ai/mobile/assets/logo-source.png" width="120" alt="KOUROU AI" />
 </p>
 
 <h1 align="center">KOUROU AI</h1>
