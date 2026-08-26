@@ -1,0 +1,4514 @@
+[
+  {
+    "model": "exams.exam",
+    "pk": 1,
+    "fields": {
+      "name": "ENAM — Cycle A (Administrateurs Civils)",
+      "code": "enam-cycle-a",
+      "description": "Concours d'entrée à l'École Nationale d'Administration et de Magistrature, cycle des Administrateurs Civils.",
+      "organizing_body": "MINFOPRA",
+      "icon_emoji": "🏛️",
+      "color_hex": "#1B4F91",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 2,
+    "fields": {
+      "name": "Police — ENSP (Inspecteurs)",
+      "code": "police-ensp",
+      "description": "Concours d'entrée à l'École Nationale Supérieure de Police, cycle des Inspecteurs de Police.",
+      "organizing_body": "DGSN",
+      "icon_emoji": "🚓",
+      "color_hex": "#153274",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 3,
+    "fields": {
+      "name": "Douanes — Inspecteurs",
+      "code": "douanes-inspecteurs",
+      "description": "Concours de recrutement des Inspecteurs des Douanes.",
+      "organizing_body": "MINFI / Direction Générale des Douanes",
+      "icon_emoji": "🚢",
+      "color_hex": "#2466B2",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 4,
+    "fields": {
+      "name": "ENS — École Normale Supérieure",
+      "code": "ens",
+      "description": "Concours d'entrée à l'École Normale Supérieure (formation des enseignants).",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📘",
+      "color_hex": "#30B77E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 5,
+    "fields": {
+      "name": "NASLA — Administration Locale",
+      "code": "nasla",
+      "description": "Concours d'entrée à la National School of Local Administration.",
+      "organizing_body": "MINFOPRA",
+      "icon_emoji": "🏙️",
+      "color_hex": "#4B6A9B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 6,
+    "fields": {
+      "name": "IEF-PR — Économie et Finances Publiques",
+      "code": "ief-pr",
+      "description": "Concours d'entrée à l'Institut d'Économie des Finances Publiques.",
+      "organizing_body": "MINFOPRA",
+      "icon_emoji": "💰",
+      "color_hex": "#2F7F4E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 7,
+    "fields": {
+      "name": "BEAC — AEM",
+      "code": "beac-aem",
+      "description": "Concours de recrutement à la Banque des États de l'Afrique Centrale.",
+      "organizing_body": "BEAC",
+      "icon_emoji": "🏦",
+      "color_hex": "#1C4A7B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 8,
+    "fields": {
+      "name": "ENS Yaoundé — ENS",
+      "code": "ens-yaounde",
+      "description": "Concours de l'École Normale Supérieure de Yaoundé.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🎓",
+      "color_hex": "#265F94",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 9,
+    "fields": {
+      "name": "ENS de Maroua",
+      "code": "ens-maroua",
+      "description": "Concours de l'École Normale Supérieure de Maroua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📚",
+      "color_hex": "#3E7A6C",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 10,
+    "fields": {
+      "name": "ENS Bertoua",
+      "code": "ens-bertoua",
+      "description": "Concours de l'École Normale Supérieure de Bertoua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📖",
+      "color_hex": "#4F6B2A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 11,
+    "fields": {
+      "name": "ENSET Douala",
+      "code": "enset-douala",
+      "description": "Concours d'entrée à l'École Normale Supérieure de l'Enseignement Technique de Douala.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#1F5A85",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 12,
+    "fields": {
+      "name": "ENSET Yaoundé",
+      "code": "enset-yaounde",
+      "description": "Concours d'entrée à l'École Normale Supérieure de l'Enseignement Technique de Yaoundé.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#2E4E76",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 13,
+    "fields": {
+      "name": "HTTTC Bambili",
+      "code": "httc-bambili",
+      "description": "Concours des Hautes Technologies de la Télécommunication et de la Communication.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "💻",
+      "color_hex": "#4B97D1",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 14,
+    "fields": {
+      "name": "Government Teacher Training College Bambili",
+      "code": "gtc-bambili",
+      "description": "Concours du Government Teacher Training College de Bambili.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#5A7A35",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 15,
+    "fields": {
+      "name": "ENSPY — Cycles d'Ingénieurs",
+      "code": "enspy",
+      "description": "Concours d'entrée à l'École Nationale Supérieure Polytechnique de Yaoundé.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🛠️",
+      "color_hex": "#1D3E65",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 16,
+    "fields": {
+      "name": "ENSPD — Polytechnique Douala",
+      "code": "enspd",
+      "description": "Concours de l'École Nationale Supérieure Polytechnique de Douala.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏗️",
+      "color_hex": "#246C7E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 17,
+    "fields": {
+      "name": "École Polytechnique de Bamenda",
+      "code": "ecole-polytechnique-bamenda",
+      "description": "Concours d'entrée à l'école polytechnique de l'université de Bamenda.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🎓",
+      "color_hex": "#3B5B2F",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 18,
+    "fields": {
+      "name": "ENSP Maroua",
+      "code": "ensp-maroua",
+      "description": "Concours de l'École Nationale Supérieure Polytechnique de Maroua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🔧",
+      "color_hex": "#7B8E2C",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 19,
+    "fields": {
+      "name": "ENSP Dschang",
+      "code": "ensp-dschang",
+      "description": "Concours de l'École Nationale Supérieure Polytechnique de Dschang.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🧱",
+      "color_hex": "#455E4A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 20,
+    "fields": {
+      "name": "ENSP Ngaoundéré",
+      "code": "ensp-ngaoundere",
+      "description": "Concours de l'École Nationale Supérieure Polytechnique de Ngaoundéré.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏗️",
+      "color_hex": "#386B96",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 21,
+    "fields": {
+      "name": "ENSP Garoua",
+      "code": "ensp-garoua",
+      "description": "Concours de l'École Nationale Supérieure Polytechnique de Garoua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏭",
+      "color_hex": "#3A5D73",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 22,
+    "fields": {
+      "name": "ENSTP — Travaux Publics Yaoundé",
+      "code": "enstp",
+      "description": "Concours d'entrée à l'École Nationale Supérieure des Travaux Publics.",
+      "organizing_body": "MINTP",
+      "icon_emoji": "🚧",
+      "color_hex": "#3A5A7A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 23,
+    "fields": {
+      "name": "National Polytechnic Bambili",
+      "code": "national-polytechnic-bambili",
+      "description": "Concours d'entrée au National Polytechnic de Bambili.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🧠",
+      "color_hex": "#3F6F45",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 24,
+    "fields": {
+      "name": "IUT Douala",
+      "code": "iut-douala",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie de Douala.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#36748A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 25,
+    "fields": {
+      "name": "IUT Fotso Victor Bandjoun",
+      "code": "iut-fotso-victor-bandjoun",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie Fotso Victor Bandjoun.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#5A5A7F",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 26,
+    "fields": {
+      "name": "IUT Ngaoundéré",
+      "code": "iut-ngaoundere",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie de Ngaoundéré.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#4E6B93",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 27,
+    "fields": {
+      "name": "IUT Garoua",
+      "code": "iut-garoua",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie de Garoua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#5E7540",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 28,
+    "fields": {
+      "name": "IUT Maroua",
+      "code": "iut-maroua",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie de Maroua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#48706E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 29,
+    "fields": {
+      "name": "IUT Bertoua",
+      "code": "iut-bertoua",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie de Bertoua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#7D6A45",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 30,
+    "fields": {
+      "name": "IUT Ebolowa",
+      "code": "iut-ebolowa",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie d'Ebolowa.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏫",
+      "color_hex": "#5C6F47",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 31,
+    "fields": {
+      "name": "IUT Bois de Mbalmayo",
+      "code": "iut-bois-de-mbalmayo",
+      "description": "Concours d'entrée à l'Institut Universitaire de Technologie Bois de Mbalmayo.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🌲",
+      "color_hex": "#3F5C4E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 32,
+    "fields": {
+      "name": "ESSTIC",
+      "code": "esstic",
+      "description": "Concours de l'École Supérieure des Sciences et Techniques de l'Information et de la Communication.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📰",
+      "color_hex": "#2B5F8B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 33,
+    "fields": {
+      "name": "IRIC",
+      "code": "iric",
+      "description": "Concours de l'Institut des Relations Internationales du Cameroun.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🌍",
+      "color_hex": "#405A7B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 34,
+    "fields": {
+      "name": "IFORD",
+      "code": "iford",
+      "description": "Concours de l'Institut de Formation et de Recherche Démographiques.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📊",
+      "color_hex": "#556A3C",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 35,
+    "fields": {
+      "name": "ESSEC Douala",
+      "code": "essec-douala",
+      "description": "Concours de l'École Supérieure des Sciences Économiques et Commerciales de Douala.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "💼",
+      "color_hex": "#3D5A81",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 36,
+    "fields": {
+      "name": "ESSEC Garoua",
+      "code": "essec-garoua",
+      "description": "Concours de l'École Supérieure des Sciences Économiques et Commerciales de Garoua.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "💼",
+      "color_hex": "#4F6B95",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 37,
+    "fields": {
+      "name": "SUP'PTIC — Télécoms Yaoundé",
+      "code": "supptic-yaounde",
+      "description": "Concours de l'École supérieure des postes, télécommunications et technologies de Yaoundé.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📡",
+      "color_hex": "#41638A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 38,
+    "fields": {
+      "name": "SUP'TIC — Télécoms Buea",
+      "code": "supptic-buea",
+      "description": "Concours de l'École supérieure des postes, télécommunications et technologies de Buea.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📡",
+      "color_hex": "#3D5B73",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 39,
+    "fields": {
+      "name": "ENSPT — Postes et Télécoms",
+      "code": "enspt",
+      "description": "Concours de l'École Nationale Supérieure des Postes et Télécommunications.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "📠",
+      "color_hex": "#3A5C78",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 40,
+    "fields": {
+      "name": "IAI-Cameroun — Informatique",
+      "code": "iai-cameroun",
+      "description": "Concours de l'Institut Africain d'Informatique du Cameroun.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🖥️",
+      "color_hex": "#3C6B92",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 41,
+    "fields": {
+      "name": "IIA — Assurances",
+      "code": "iia-assurances",
+      "description": "Concours de l'Institut International des Assurances.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🛡️",
+      "color_hex": "#5F6A38",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 42,
+    "fields": {
+      "name": "EAMAC — Météorologie et Aviation Civile",
+      "code": "eamac",
+      "description": "Concours de l'École Africaine de la Météorologie et de l'Aviation Civile.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "✈️",
+      "color_hex": "#1F4E75",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 43,
+    "fields": {
+      "name": "IFCPA/CRTV — Audiovisuel",
+      "code": "ifpca-crtv",
+      "description": "Concours de l'Institut de Formation et de Conservation du Patrimoine Audiovisuel.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🎬",
+      "color_hex": "#425A7A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 44,
+    "fields": {
+      "name": "HITL Bamenda",
+      "code": "hitl-bamenda",
+      "description": "Concours de l'École de Hôtellerie, Tourisme et Loisirs de Bamenda.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏨",
+      "color_hex": "#514B5A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 45,
+    "fields": {
+      "name": "ASTI Buéa",
+      "code": "asti-buea",
+      "description": "Concours de l'Advanced School of Translators and Interpreters.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🌐",
+      "color_hex": "#26506E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 46,
+    "fields": {
+      "name": "FET Buéa",
+      "code": "fet-buea",
+      "description": "Concours de la Faculté d'Ingénierie et de Technologie de Buéa.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏛️",
+      "color_hex": "#405A5A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 47,
+    "fields": {
+      "name": "FALSH Yaoundé I",
+      "code": "falsh-yaounde-i",
+      "description": "Concours de la Faculté des Arts, Lettres et Sciences Humaines de Yaoundé I.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🎨",
+      "color_hex": "#6A4B3A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 48,
+    "fields": {
+      "name": "COLTECH Bamenda",
+      "code": "coltech-bamenda",
+      "description": "Concours du College of Technology de Bamenda.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏢",
+      "color_hex": "#526A76",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 49,
+    "fields": {
+      "name": "ENIEG — Instituteurs de Base",
+      "code": "enieg",
+      "description": "Concours d'entrée aux Écoles Normales des Instituteurs de l'Enseignement Général.",
+      "organizing_body": "MINEDUB",
+      "icon_emoji": "✏️",
+      "color_hex": "#3A6C5C",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 50,
+    "fields": {
+      "name": "ENIET — Instituteurs Techniques",
+      "code": "eniet",
+      "description": "Concours d'entrée aux Écoles Normales des Instituteurs de l'Enseignement Technique.",
+      "organizing_body": "MINEDUB",
+      "icon_emoji": "🧑‍🏫",
+      "color_hex": "#5A7F72",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 51,
+    "fields": {
+      "name": "FMSB Yaoundé I",
+      "code": "fmsb-yaounde-i",
+      "description": "Concours d'entrée à la Faculté de Médecine et des Sciences Biomédicales de Yaoundé I.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🩺",
+      "color_hex": "#7A3F4B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 52,
+    "fields": {
+      "name": "FMSP Douala",
+      "code": "fmsp-douala",
+      "description": "Concours d'entrée à la Faculté de Médecine et des Sciences Pharmaceutiques de Douala.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "💊",
+      "color_hex": "#3B6771",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 53,
+    "fields": {
+      "name": "Faculté des Sciences de la Santé Bamenda",
+      "code": "fss-bamenda",
+      "description": "Concours d'entrée à la Faculté des Sciences de la Santé de Bamenda.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🩺",
+      "color_hex": "#455F6B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 54,
+    "fields": {
+      "name": "Faculté des Sciences de la Santé Buéa",
+      "code": "fss-buea",
+      "description": "Concours d'entrée à la Faculté des Sciences de la Santé de Buéa.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🩺",
+      "color_hex": "#3F5B6A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 55,
+    "fields": {
+      "name": "Faculté des Sciences de la Santé Dschang",
+      "code": "fss-dschang",
+      "description": "Concours d'entrée à la Faculté des Sciences de la Santé de Dschang.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🩺",
+      "color_hex": "#3F6472",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 56,
+    "fields": {
+      "name": "Faculté des Sciences de la Santé Ngaoundéré",
+      "code": "fss-ngaoundere",
+      "description": "Concours d'entrée à la Faculté des Sciences de la Santé de Ngaoundéré.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🩺",
+      "color_hex": "#4E6A7D",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 57,
+    "fields": {
+      "name": "FMSB Garoua",
+      "code": "fmsb-garoua",
+      "description": "Concours d'entrée à la Faculté de Médecine et des Sciences Biomédicales de Garoua.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🩺",
+      "color_hex": "#49637A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 58,
+    "fields": {
+      "name": "CESSI — Sciences de la Santé",
+      "code": "cessi-sante",
+      "description": "Concours du Centre d'Études des Sciences de la Santé pour infirmiers et TMS.",
+      "organizing_body": "MINSANTE",
+      "icon_emoji": "🏥",
+      "color_hex": "#4B5D6A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 59,
+    "fields": {
+      "name": "Police — Recrutement DGSN",
+      "code": "police-dgsn",
+      "description": "Concours de recrutement des commissaires, officiers et gardiens de la paix.",
+      "organizing_body": "DGSN",
+      "icon_emoji": "🚓",
+      "color_hex": "#1E3D60",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 60,
+    "fields": {
+      "name": "Gendarmerie — Recrutement SED",
+      "code": "gendarmerie-sed",
+      "description": "Concours de recrutement des officiers et sous-officiers de la Gendarmerie.",
+      "organizing_body": "SED",
+      "icon_emoji": "🛡️",
+      "color_hex": "#283E60",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 61,
+    "fields": {
+      "name": "Armée de Terre — Recrutement",
+      "code": "armee-de-terre",
+      "description": "Concours de recrutement des soldats, sous-officiers et officiers des Forces de Défense.",
+      "organizing_body": "Ministère de la Défense",
+      "icon_emoji": "🎖️",
+      "color_hex": "#3D5C3D",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 62,
+    "fields": {
+      "name": "EMIA — École Militaire InterArmées",
+      "code": "emia",
+      "description": "Concours d'entrée à l'École Militaire InterArmées pour officiers.",
+      "organizing_body": "Ministère de la Défense",
+      "icon_emoji": "🪖",
+      "color_hex": "#2D4F32",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 63,
+    "fields": {
+      "name": "Administration pénitentiaire",
+      "code": "administration-penitentiaire",
+      "description": "Concours de recrutement des gardiens et surveillants de prison.",
+      "organizing_body": "Ministère de la Justice",
+      "icon_emoji": "🏛️",
+      "color_hex": "#5A4B3F",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 64,
+    "fields": {
+      "name": "CIAP Mutengene",
+      "code": "ciap-mutengene",
+      "description": "Concours d'entrée au Centre d'Instruction et d'Application de la Police.",
+      "organizing_body": "DGSN",
+      "icon_emoji": "🚔",
+      "color_hex": "#2D577B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 65,
+    "fields": {
+      "name": "Impôts — DGI",
+      "code": "impots-dgi",
+      "description": "Concours de recrutement des inspecteurs et contrôleurs des impôts.",
+      "organizing_body": "MINFI",
+      "icon_emoji": "📊",
+      "color_hex": "#3F5E6D",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 66,
+    "fields": {
+      "name": "Trésor Public",
+      "code": "tresor-public",
+      "description": "Concours de recrutement des agents et inspecteurs du Trésor.",
+      "organizing_body": "MINFI",
+      "icon_emoji": "🏛️",
+      "color_hex": "#3E6A5F",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 67,
+    "fields": {
+      "name": "Magistrature — ENAM",
+      "code": "magistrature-enam",
+      "description": "Concours d'entrée à la section Magistrature de l'ENAM.",
+      "organizing_body": "MINFOPRA",
+      "icon_emoji": "⚖️",
+      "color_hex": "#3B4C70",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 68,
+    "fields": {
+      "name": "Greffiers — ENAM",
+      "code": "greffiers-enam",
+      "description": "Concours d'entrée à la division Greffes & Juridictions de l'ENAM.",
+      "organizing_body": "MINFOPRA",
+      "icon_emoji": "🗃️",
+      "color_hex": "#474B5C",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 69,
+    "fields": {
+      "name": "Notariat",
+      "code": "notariat",
+      "description": "Examen d'aptitude à la profession de notaire.",
+      "organizing_body": "MINJUSTICE",
+      "icon_emoji": "📝",
+      "color_hex": "#4A5E59",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 70,
+    "fields": {
+      "name": "Avocats — EAS",
+      "code": "avocats-examen-stage",
+      "description": "Examen d'Aptitude au Stage d'Avocat.",
+      "organizing_body": "MINJUSTICE",
+      "icon_emoji": "⚖️",
+      "color_hex": "#3F5167",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 71,
+    "fields": {
+      "name": "FASA Dschang",
+      "code": "fasa-dschang",
+      "description": "Concours d'entrée à la Faculté d'Agronomie et des Sciences Agricoles.",
+      "organizing_body": "MINADER",
+      "icon_emoji": "🌾",
+      "color_hex": "#5A6A3E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 72,
+    "fields": {
+      "name": "ISABEE Ebolowa",
+      "code": "isabee-ebolowa",
+      "description": "Concours d'entrée à l'Institut Supérieur d'Agriculture, du Bois, de l'Eau et de l'Environnement.",
+      "organizing_body": "MINADER",
+      "icon_emoji": "🌳",
+      "color_hex": "#3C624B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 73,
+    "fields": {
+      "name": "ISABEE Bertoua",
+      "code": "isabee-bertoua",
+      "description": "Concours d'entrée à l'Institut Supérieur d'Agriculture du Bois et de l'Environnement de Bertoua.",
+      "organizing_body": "MINADER",
+      "icon_emoji": "🌳",
+      "color_hex": "#4C6C52",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 74,
+    "fields": {
+      "name": "ENSAI Ngaoundéré",
+      "code": "ensai-ngaoundere",
+      "description": "Concours d'entrée à l'École Nationale Supérieure Agro-Industrielle.",
+      "organizing_body": "MINADER",
+      "icon_emoji": "🌾",
+      "color_hex": "#4B6A73",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 75,
+    "fields": {
+      "name": "ESMV Ngaoundéré",
+      "code": "esmv-ngaoundere",
+      "description": "Concours d'entrée à l'École des Sciences et de Médecine Vétérinaire.",
+      "organizing_body": "MINEPIA",
+      "icon_emoji": "🐄",
+      "color_hex": "#4F6B53",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 76,
+    "fields": {
+      "name": "CNFZV — Zootechnique et Vétérinaire",
+      "code": "cnfzv",
+      "description": "Concours des Centres de Formation Zootechnique et Vétérinaire.",
+      "organizing_body": "MINEPIA",
+      "icon_emoji": "🐖",
+      "color_hex": "#6A5F3A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 77,
+    "fields": {
+      "name": "FAVM Buéa",
+      "code": "favm-buea",
+      "description": "Concours de la Faculté d'Agriculture et de Médecine Vétérinaire de Buéa.",
+      "organizing_body": "MINADER",
+      "icon_emoji": "🌿",
+      "color_hex": "#3B6F54",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 78,
+    "fields": {
+      "name": "Département Agriculture Garoua",
+      "code": "departement-agriculture-garoua",
+      "description": "Concours de recrutement pour les programmes agricoles à Garoua.",
+      "organizing_body": "MINADER",
+      "icon_emoji": "🌾",
+      "color_hex": "#4A6A30",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 79,
+    "fields": {
+      "name": "EGEM — Géologie et Mines",
+      "code": "egem",
+      "description": "Concours de l'École de Géologie et d'Exploitation Minière.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "⛏️",
+      "color_hex": "#4F5C6B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 80,
+    "fields": {
+      "name": "ESTM Batouri",
+      "code": "estm-batouri",
+      "description": "Concours de l'École Supérieure de Transformation des Mines et des Ressources.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏭",
+      "color_hex": "#4A5E72",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 81,
+    "fields": {
+      "name": "EGCIM — Génie Chimique et Industries Minérales",
+      "code": "egcim",
+      "description": "Concours de l'École de Génie Chimique et des Industries Minérales.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🏭",
+      "color_hex": "#41576A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 82,
+    "fields": {
+      "name": "ENSMIP Maroua",
+      "code": "ensmip-maroua",
+      "description": "Concours de l'École Nationale Supérieure des Mines, Industries et Pétrole.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "⛽",
+      "color_hex": "#3F5767",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 83,
+    "fields": {
+      "name": "Faculté de Génie Industriel (FGI)",
+      "code": "fgi",
+      "description": "Concours de recrutement à la Faculté de Génie Industriel.",
+      "organizing_body": "MINESUP",
+      "icon_emoji": "🛠️",
+      "color_hex": "#455F72",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 84,
+    "fields": {
+      "name": "INJS — Jeunesse et Sports",
+      "code": "injs",
+      "description": "Concours de l'Institut National de la Jeunesse et des Sports.",
+      "organizing_body": "MINJEC",
+      "icon_emoji": "🏅",
+      "color_hex": "#3C5873",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 85,
+    "fields": {
+      "name": "CENAJES — Centres de Jeunesse et Sports",
+      "code": "cenajes",
+      "description": "Concours des Centres Nationaux de la Jeunesse et des Sports.",
+      "organizing_body": "MINSEP",
+      "icon_emoji": "🏕️",
+      "color_hex": "#3B6D5A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 86,
+    "fields": {
+      "name": "Institut des Beaux-Arts de Foumban",
+      "code": "iba-foumban",
+      "description": "Concours de l'Institut des Beaux-Arts de Foumban.",
+      "organizing_body": "MINAC",
+      "icon_emoji": "🎨",
+      "color_hex": "#5D4B68",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 87,
+    "fields": {
+      "name": "IBA Nkongsamba",
+      "code": "iba-nkongsamba",
+      "description": "Concours de l'Institut des Beaux-Arts de Nkongsamba.",
+      "organizing_body": "MINAC",
+      "icon_emoji": "🎨",
+      "color_hex": "#4A5C6A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 88,
+    "fields": {
+      "name": "MINEFOP — Formation Professionnelle",
+      "code": "minefop",
+      "description": "Concours de recrutement dans les centres de formation professionnelle.",
+      "organizing_body": "MINEFOP",
+      "icon_emoji": "🛠️",
+      "color_hex": "#455F48",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 89,
+    "fields": {
+      "name": "Concours CFPE — Bourses MINEFOP",
+      "code": "cfpe-bourses",
+      "description": "Concours de bourses pour les centres de formation professionnelle.",
+      "organizing_body": "MINEFOP",
+      "icon_emoji": "🎓",
+      "color_hex": "#3E6B4F",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 90,
+    "fields": {
+      "name": "CQP — Certificat de Qualification Professionnelle",
+      "code": "cqp",
+      "description": "Concours du Certificat de Qualification Professionnelle MINEFOP.",
+      "organizing_body": "MINEFOP",
+      "icon_emoji": "📜",
+      "color_hex": "#4C5A6B",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 91,
+    "fields": {
+      "name": "ISSEA — Ingénieurs Statisticiens Économistes / Analystes Statisticiens",
+      "code": "issea-yaounde",
+      "description": "Concours d'entrée à l'Institut Sous-régional de Statistique et d'Économie Appliquée de Yaoundé (cycles ISE, ISE long/AS), commun avec ENSEA Abidjan et ENSAE Dakar.",
+      "organizing_body": "MINESUP / CEMAC",
+      "icon_emoji": "📈",
+      "color_hex": "#2E5C8A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 92,
+    "fields": {
+      "name": "ENEF Mbalmayo — Eaux et Forêts",
+      "code": "enef-mbalmayo",
+      "description": "Concours d'entrée à l'École Nationale des Eaux et Forêts de Mbalmayo (cycles ATEF, TEF, TSEF).",
+      "organizing_body": "MINFOF",
+      "icon_emoji": "🌲",
+      "color_hex": "#2F6B3E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 93,
+    "fields": {
+      "name": "Corps National des Sapeurs-Pompiers",
+      "code": "sapeurs-pompiers",
+      "description": "Concours de recrutement des sapeurs-pompiers (militaires du rang, sous-officiers, officiers) au Corps National des Sapeurs-Pompiers.",
+      "organizing_body": "Ministère de la Défense",
+      "icon_emoji": "🚒",
+      "color_hex": "#B33A2E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 94,
+    "fields": {
+      "name": "Santé Militaire — Recrutement",
+      "code": "sante-militaire",
+      "description": "Concours de recrutement des élèves sous-officiers option Santé Militaire (infirmiers, sages-femmes, techniciens médico-sanitaires) au sein de l'Armée et de la Gendarmerie.",
+      "organizing_body": "Ministère de la Défense",
+      "icon_emoji": "⚕️",
+      "color_hex": "#3D5C4A",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 95,
+    "fields": {
+      "name": "Armée de l'Air — Recrutement",
+      "code": "armee-de-lair",
+      "description": "Concours de recrutement (tests psychotechniques) pour les personnels navigants et non-navigants de l'Armée de l'Air camerounaise.",
+      "organizing_body": "Ministère de la Défense",
+      "icon_emoji": "🛩️",
+      "color_hex": "#1F4E75",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.exam",
+    "pk": 96,
+    "fields": {
+      "name": "Marine Nationale — Recrutement",
+      "code": "marine-nationale",
+      "description": "Concours de recrutement des matelots, sous-officiers et officiers de la Marine Nationale camerounaise.",
+      "organizing_body": "Ministère de la Défense",
+      "icon_emoji": "⚓",
+      "color_hex": "#173A5E",
+      "is_active": true,
+      "created_at": "2026-01-05T08:00:00Z"
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 473,
+    "fields": {
+      "exam": 1,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 474,
+    "fields": {
+      "exam": 1,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 475,
+    "fields": {
+      "exam": 1,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 476,
+    "fields": {
+      "exam": 2,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 477,
+    "fields": {
+      "exam": 2,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 478,
+    "fields": {
+      "exam": 2,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 479,
+    "fields": {
+      "exam": 3,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 480,
+    "fields": {
+      "exam": 3,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 481,
+    "fields": {
+      "exam": 3,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 482,
+    "fields": {
+      "exam": 4,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 483,
+    "fields": {
+      "exam": 4,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 484,
+    "fields": {
+      "exam": 4,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 485,
+    "fields": {
+      "exam": 5,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 486,
+    "fields": {
+      "exam": 5,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 487,
+    "fields": {
+      "exam": 5,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 488,
+    "fields": {
+      "exam": 6,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 489,
+    "fields": {
+      "exam": 6,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 490,
+    "fields": {
+      "exam": 6,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 491,
+    "fields": {
+      "exam": 7,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 492,
+    "fields": {
+      "exam": 7,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 493,
+    "fields": {
+      "exam": 7,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 494,
+    "fields": {
+      "exam": 8,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 495,
+    "fields": {
+      "exam": 8,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 496,
+    "fields": {
+      "exam": 8,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 497,
+    "fields": {
+      "exam": 9,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 498,
+    "fields": {
+      "exam": 9,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 499,
+    "fields": {
+      "exam": 9,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 500,
+    "fields": {
+      "exam": 10,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 501,
+    "fields": {
+      "exam": 10,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 502,
+    "fields": {
+      "exam": 10,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 503,
+    "fields": {
+      "exam": 11,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 504,
+    "fields": {
+      "exam": 11,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 505,
+    "fields": {
+      "exam": 11,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 506,
+    "fields": {
+      "exam": 12,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 507,
+    "fields": {
+      "exam": 12,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 508,
+    "fields": {
+      "exam": 12,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 509,
+    "fields": {
+      "exam": 13,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 510,
+    "fields": {
+      "exam": 13,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 511,
+    "fields": {
+      "exam": 13,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 512,
+    "fields": {
+      "exam": 14,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 513,
+    "fields": {
+      "exam": 14,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 514,
+    "fields": {
+      "exam": 14,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 515,
+    "fields": {
+      "exam": 15,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 516,
+    "fields": {
+      "exam": 15,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 517,
+    "fields": {
+      "exam": 15,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 518,
+    "fields": {
+      "exam": 16,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 519,
+    "fields": {
+      "exam": 16,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 520,
+    "fields": {
+      "exam": 16,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 521,
+    "fields": {
+      "exam": 17,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 522,
+    "fields": {
+      "exam": 17,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 523,
+    "fields": {
+      "exam": 17,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 524,
+    "fields": {
+      "exam": 18,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 525,
+    "fields": {
+      "exam": 18,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 526,
+    "fields": {
+      "exam": 18,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 527,
+    "fields": {
+      "exam": 19,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 528,
+    "fields": {
+      "exam": 19,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 529,
+    "fields": {
+      "exam": 19,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 530,
+    "fields": {
+      "exam": 20,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 531,
+    "fields": {
+      "exam": 20,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 532,
+    "fields": {
+      "exam": 20,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 533,
+    "fields": {
+      "exam": 21,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 534,
+    "fields": {
+      "exam": 21,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 535,
+    "fields": {
+      "exam": 21,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 536,
+    "fields": {
+      "exam": 22,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 537,
+    "fields": {
+      "exam": 22,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 538,
+    "fields": {
+      "exam": 22,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 539,
+    "fields": {
+      "exam": 23,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 540,
+    "fields": {
+      "exam": 23,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 541,
+    "fields": {
+      "exam": 23,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 542,
+    "fields": {
+      "exam": 24,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 543,
+    "fields": {
+      "exam": 24,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 544,
+    "fields": {
+      "exam": 24,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 545,
+    "fields": {
+      "exam": 25,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 546,
+    "fields": {
+      "exam": 25,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 547,
+    "fields": {
+      "exam": 25,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 548,
+    "fields": {
+      "exam": 26,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 549,
+    "fields": {
+      "exam": 26,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 550,
+    "fields": {
+      "exam": 26,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 551,
+    "fields": {
+      "exam": 27,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 552,
+    "fields": {
+      "exam": 27,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 553,
+    "fields": {
+      "exam": 27,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 554,
+    "fields": {
+      "exam": 28,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 555,
+    "fields": {
+      "exam": 28,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 556,
+    "fields": {
+      "exam": 28,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 557,
+    "fields": {
+      "exam": 29,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 558,
+    "fields": {
+      "exam": 29,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 559,
+    "fields": {
+      "exam": 29,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 560,
+    "fields": {
+      "exam": 30,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 561,
+    "fields": {
+      "exam": 30,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 562,
+    "fields": {
+      "exam": 30,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 563,
+    "fields": {
+      "exam": 31,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 564,
+    "fields": {
+      "exam": 31,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 565,
+    "fields": {
+      "exam": 31,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 566,
+    "fields": {
+      "exam": 32,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 567,
+    "fields": {
+      "exam": 32,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 568,
+    "fields": {
+      "exam": 32,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 569,
+    "fields": {
+      "exam": 33,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 570,
+    "fields": {
+      "exam": 33,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 571,
+    "fields": {
+      "exam": 33,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 572,
+    "fields": {
+      "exam": 34,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 573,
+    "fields": {
+      "exam": 34,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 574,
+    "fields": {
+      "exam": 34,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 575,
+    "fields": {
+      "exam": 35,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 576,
+    "fields": {
+      "exam": 35,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 577,
+    "fields": {
+      "exam": 35,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 578,
+    "fields": {
+      "exam": 36,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 579,
+    "fields": {
+      "exam": 36,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 580,
+    "fields": {
+      "exam": 36,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 581,
+    "fields": {
+      "exam": 37,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 582,
+    "fields": {
+      "exam": 37,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 583,
+    "fields": {
+      "exam": 37,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 584,
+    "fields": {
+      "exam": 38,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 585,
+    "fields": {
+      "exam": 38,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 586,
+    "fields": {
+      "exam": 38,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 587,
+    "fields": {
+      "exam": 39,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 588,
+    "fields": {
+      "exam": 39,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 589,
+    "fields": {
+      "exam": 39,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 590,
+    "fields": {
+      "exam": 40,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 591,
+    "fields": {
+      "exam": 40,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 592,
+    "fields": {
+      "exam": 40,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 593,
+    "fields": {
+      "exam": 41,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 594,
+    "fields": {
+      "exam": 41,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 595,
+    "fields": {
+      "exam": 41,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 596,
+    "fields": {
+      "exam": 42,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 597,
+    "fields": {
+      "exam": 42,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 598,
+    "fields": {
+      "exam": 42,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 599,
+    "fields": {
+      "exam": 43,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 600,
+    "fields": {
+      "exam": 43,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 601,
+    "fields": {
+      "exam": 43,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 602,
+    "fields": {
+      "exam": 44,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 603,
+    "fields": {
+      "exam": 44,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 604,
+    "fields": {
+      "exam": 44,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 605,
+    "fields": {
+      "exam": 45,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 606,
+    "fields": {
+      "exam": 45,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 607,
+    "fields": {
+      "exam": 45,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 608,
+    "fields": {
+      "exam": 46,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 609,
+    "fields": {
+      "exam": 46,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 610,
+    "fields": {
+      "exam": 46,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 611,
+    "fields": {
+      "exam": 47,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 612,
+    "fields": {
+      "exam": 47,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 613,
+    "fields": {
+      "exam": 47,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 614,
+    "fields": {
+      "exam": 48,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 615,
+    "fields": {
+      "exam": 48,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 616,
+    "fields": {
+      "exam": 48,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 617,
+    "fields": {
+      "exam": 49,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 618,
+    "fields": {
+      "exam": 49,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 619,
+    "fields": {
+      "exam": 49,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 620,
+    "fields": {
+      "exam": 50,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 621,
+    "fields": {
+      "exam": 50,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 622,
+    "fields": {
+      "exam": 50,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 623,
+    "fields": {
+      "exam": 51,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 624,
+    "fields": {
+      "exam": 51,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 625,
+    "fields": {
+      "exam": 51,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 626,
+    "fields": {
+      "exam": 52,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 627,
+    "fields": {
+      "exam": 52,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 628,
+    "fields": {
+      "exam": 52,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 629,
+    "fields": {
+      "exam": 53,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 630,
+    "fields": {
+      "exam": 53,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 631,
+    "fields": {
+      "exam": 53,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 632,
+    "fields": {
+      "exam": 54,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 633,
+    "fields": {
+      "exam": 54,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 634,
+    "fields": {
+      "exam": 54,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 635,
+    "fields": {
+      "exam": 55,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 636,
+    "fields": {
+      "exam": 55,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 637,
+    "fields": {
+      "exam": 55,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 638,
+    "fields": {
+      "exam": 56,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 639,
+    "fields": {
+      "exam": 56,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 640,
+    "fields": {
+      "exam": 56,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 641,
+    "fields": {
+      "exam": 57,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 642,
+    "fields": {
+      "exam": 57,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 643,
+    "fields": {
+      "exam": 57,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 644,
+    "fields": {
+      "exam": 58,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 645,
+    "fields": {
+      "exam": 58,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 646,
+    "fields": {
+      "exam": 58,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 647,
+    "fields": {
+      "exam": 59,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 648,
+    "fields": {
+      "exam": 59,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 649,
+    "fields": {
+      "exam": 59,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 650,
+    "fields": {
+      "exam": 60,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 651,
+    "fields": {
+      "exam": 60,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 652,
+    "fields": {
+      "exam": 60,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 653,
+    "fields": {
+      "exam": 61,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 654,
+    "fields": {
+      "exam": 61,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 655,
+    "fields": {
+      "exam": 61,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 656,
+    "fields": {
+      "exam": 62,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 657,
+    "fields": {
+      "exam": 62,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 658,
+    "fields": {
+      "exam": 62,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 659,
+    "fields": {
+      "exam": 63,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 660,
+    "fields": {
+      "exam": 63,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 661,
+    "fields": {
+      "exam": 63,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 662,
+    "fields": {
+      "exam": 64,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 663,
+    "fields": {
+      "exam": 64,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 664,
+    "fields": {
+      "exam": 64,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 665,
+    "fields": {
+      "exam": 65,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 666,
+    "fields": {
+      "exam": 65,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 667,
+    "fields": {
+      "exam": 65,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 668,
+    "fields": {
+      "exam": 66,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 669,
+    "fields": {
+      "exam": 66,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 670,
+    "fields": {
+      "exam": 66,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 671,
+    "fields": {
+      "exam": 67,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 672,
+    "fields": {
+      "exam": 67,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 673,
+    "fields": {
+      "exam": 67,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 674,
+    "fields": {
+      "exam": 68,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 675,
+    "fields": {
+      "exam": 68,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 676,
+    "fields": {
+      "exam": 68,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 677,
+    "fields": {
+      "exam": 69,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 678,
+    "fields": {
+      "exam": 69,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 679,
+    "fields": {
+      "exam": 69,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 680,
+    "fields": {
+      "exam": 70,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 681,
+    "fields": {
+      "exam": 70,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 682,
+    "fields": {
+      "exam": 70,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 683,
+    "fields": {
+      "exam": 71,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 684,
+    "fields": {
+      "exam": 71,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 685,
+    "fields": {
+      "exam": 71,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 686,
+    "fields": {
+      "exam": 72,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 687,
+    "fields": {
+      "exam": 72,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 688,
+    "fields": {
+      "exam": 72,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 689,
+    "fields": {
+      "exam": 73,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 690,
+    "fields": {
+      "exam": 73,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 691,
+    "fields": {
+      "exam": 73,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 692,
+    "fields": {
+      "exam": 74,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 693,
+    "fields": {
+      "exam": 74,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 694,
+    "fields": {
+      "exam": 74,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 695,
+    "fields": {
+      "exam": 75,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 696,
+    "fields": {
+      "exam": 75,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 697,
+    "fields": {
+      "exam": 75,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 698,
+    "fields": {
+      "exam": 76,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 699,
+    "fields": {
+      "exam": 76,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 700,
+    "fields": {
+      "exam": 76,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 701,
+    "fields": {
+      "exam": 77,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 702,
+    "fields": {
+      "exam": 77,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 703,
+    "fields": {
+      "exam": 77,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 704,
+    "fields": {
+      "exam": 78,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 705,
+    "fields": {
+      "exam": 78,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 706,
+    "fields": {
+      "exam": 78,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 707,
+    "fields": {
+      "exam": 79,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 708,
+    "fields": {
+      "exam": 79,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 709,
+    "fields": {
+      "exam": 79,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 710,
+    "fields": {
+      "exam": 80,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 711,
+    "fields": {
+      "exam": 80,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 712,
+    "fields": {
+      "exam": 80,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 713,
+    "fields": {
+      "exam": 81,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 714,
+    "fields": {
+      "exam": 81,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 715,
+    "fields": {
+      "exam": 81,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 716,
+    "fields": {
+      "exam": 82,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 717,
+    "fields": {
+      "exam": 82,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 718,
+    "fields": {
+      "exam": 82,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 719,
+    "fields": {
+      "exam": 83,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 720,
+    "fields": {
+      "exam": 83,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 721,
+    "fields": {
+      "exam": 83,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 722,
+    "fields": {
+      "exam": 84,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 723,
+    "fields": {
+      "exam": 84,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 724,
+    "fields": {
+      "exam": 84,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 725,
+    "fields": {
+      "exam": 85,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 726,
+    "fields": {
+      "exam": 85,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 727,
+    "fields": {
+      "exam": 85,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 728,
+    "fields": {
+      "exam": 86,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 729,
+    "fields": {
+      "exam": 86,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 730,
+    "fields": {
+      "exam": 86,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 731,
+    "fields": {
+      "exam": 87,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 732,
+    "fields": {
+      "exam": 87,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 733,
+    "fields": {
+      "exam": 87,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 734,
+    "fields": {
+      "exam": 88,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 735,
+    "fields": {
+      "exam": 88,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 736,
+    "fields": {
+      "exam": 88,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 737,
+    "fields": {
+      "exam": 89,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 738,
+    "fields": {
+      "exam": 89,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 739,
+    "fields": {
+      "exam": 89,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 740,
+    "fields": {
+      "exam": 90,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 741,
+    "fields": {
+      "exam": 90,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 742,
+    "fields": {
+      "exam": 90,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 743,
+    "fields": {
+      "exam": 91,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 744,
+    "fields": {
+      "exam": 91,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 745,
+    "fields": {
+      "exam": 91,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 746,
+    "fields": {
+      "exam": 92,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 747,
+    "fields": {
+      "exam": 92,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 748,
+    "fields": {
+      "exam": 92,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 749,
+    "fields": {
+      "exam": 93,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 750,
+    "fields": {
+      "exam": 93,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 751,
+    "fields": {
+      "exam": 93,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 752,
+    "fields": {
+      "exam": 94,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 753,
+    "fields": {
+      "exam": 94,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 754,
+    "fields": {
+      "exam": 94,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 755,
+    "fields": {
+      "exam": 95,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 756,
+    "fields": {
+      "exam": 95,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 757,
+    "fields": {
+      "exam": 95,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 758,
+    "fields": {
+      "exam": 96,
+      "name": "Culture Générale",
+      "description": "",
+      "coefficient": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 759,
+    "fields": {
+      "exam": 96,
+      "name": "Test Psychotechnique",
+      "description": "",
+      "coefficient": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "exams.subject",
+    "pk": 760,
+    "fields": {
+      "exam": 96,
+      "name": "Anglais / Français",
+      "description": "",
+      "coefficient": 1,
+      "order": 3
+    }
+  }
+]

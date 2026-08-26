@@ -1,0 +1,10 @@
+-r base.txt
+
+# Serveur d'application : Gunicorn pilote des workers Uvicorn (ASGI) afin de
+# supporter nativement le streaming SSE (tuteur IA) sans bloquer les workers.
+gunicorn==26.0.0
+uvicorn[standard]==0.52.0
+uvicorn-worker==0.4.0
+
+# Fichiers statiques (panneau d'administration, etc.) sans dépendre d'un CDN
+whitenoise==6.12.0
