@@ -27,7 +27,7 @@ class PaymentGatewayError(APIException):
 
 class AIGenerationError(APIException):
     status_code = status.HTTP_502_BAD_GATEWAY
-    default_detail = "Le moteur IA n'a pas pu générer de contenu pour le moment. Réessayez."
+    default_detail = "Le moteur IA est momentanément indisponible. Votre quota n'a pas été consommé. Réessayez dans quelques instants."
     default_code = "ai_generation_error"
 
 

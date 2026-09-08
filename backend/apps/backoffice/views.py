@@ -14,18 +14,28 @@ par le cahier des charges.
 from datetime import timedelta
 
 from django.contrib.auth import get_user_model
-from django.db.models import Sum
+from django.db.models import Count, Sum
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.ai_engine.models import CachedGeneration, QCMSession
+from apps.exams.models import Exam
 from apps.payments.models import Transaction, TransactionStatus
-from apps.quotas.models import TokenUsageLog
+from apps.quotas.models import TokenUsageLog, UserQuota
 from common.permissions import IsAdminBackoffice
 
-from .serializers import PlatformStatsSerializer
+from .serializers import (
+    AdminDashboardSerializer,
+    AdminExamCreateSerializer,
+    AdminUserCreateSerializer,
+    AdminUserDeleteSerializer,
+    GrantTokensSerializer,
+    PlatformStatsSerializer,
+)
 
 User = get_user_model()
 
@@ -86,3 +96,93 @@ class PlatformStatsView(APIView):
             "revenue_last_30_days_fcfa": float(revenue_30d),
         }
         return Response(PlatformStatsSerializer(data).data)
+
+
+@extend_schema(tags=["Back-office"], responses={200: AdminDashboardSerializer})
+class AdminDashboardView(APIView):
+    permission_classes = [IsAdminBackoffice]
+
+    def get(self, request):
+        users = (
+            User.objects.select_related("referred_by", "quota")
+            .order_by("-created_at")
+            .all()
+        )
+        premium_users = list(users.filter(is_premium=True)[:10])
+        suspended_users = list(users.filter(is_active=False, suspended_at__isnull=False)[:10])
+
+        top_referrers = (
+            User.objects.filter(referred_users__isnull=False)
+            .annotate(referrals=Count("referred_users"))
+            .order_by("-referrals", "-created_at")[:5]
+            .annotate(reward_fcfa=Count("referred_users") * 5000)
+        )
+
+        payload = {
+            "users": users[:10],
+            "premium_users": premium_users,
+            "suspended_users": suspended_users,
+            "top_referrers": top_referrers,
+        }
+        return Response(AdminDashboardSerializer(payload).data)
+
+
+@extend_schema(tags=["Back-office"], request=AdminUserCreateSerializer, responses={201: AdminUserCreateSerializer})
+class AdminUserCreateView(APIView):
+    permission_classes = [IsAdminBackoffice]
+
+    def post(self, request):
+        serializer = AdminUserCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(AdminUserCreateSerializer(user).data, status=status.HTTP_201_CREATED)
+
+
+@extend_schema(tags=["Back-office"], request=AdminUserDeleteSerializer, responses={200: {"message": "string"}})
+class AdminUserDeleteView(APIView):
+    permission_classes = [IsAdminBackoffice]
+
+    def post(self, request):
+        serializer = AdminUserDeleteSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data["user"]
+
+        if user == request.user:
+            return Response({"detail": "Vous ne pouvez pas supprimer votre propre compte admin."}, status=400)
+
+        user.delete()
+        return Response({"message": "Utilisateur supprimé avec succès."})
+
+
+@extend_schema(tags=["Back-office"], responses={200: {"message": "string"}})
+class AdminUserDeleteByIdView(APIView):
+    permission_classes = [IsAdminBackoffice]
+
+    def delete(self, request, user_id):
+        user = get_object_or_404(User, id=user_id)
+        if user == request.user:
+            return Response({"detail": "Vous ne pouvez pas supprimer votre propre compte admin."}, status=400)
+        user.delete()
+        return Response({"message": "Utilisateur supprimé avec succès."})
+
+
+@extend_schema(tags=["Back-office"], request=GrantTokensSerializer, responses={200: {"message": "string", "daily_limit": "integer"}})
+class GrantTokensView(APIView):
+    permission_classes = [IsAdminBackoffice]
+
+    def post(self, request):
+        serializer = GrantTokensSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        quota = serializer.save()
+        return Response({"message": "Tokens ajoutés avec succès.", "daily_limit": quota.daily_limit, "user_id": str(quota.user_id)})
+
+
+@extend_schema(tags=["Back-office"], request=AdminExamCreateSerializer, responses={201: AdminExamCreateSerializer})
+class AdminExamCreateView(APIView):
+    permission_classes = [IsAdminBackoffice]
+
+    def post(self, request):
+        serializer = AdminExamCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        exam = serializer.save()
+        return Response(AdminExamCreateSerializer(exam).data, status=status.HTTP_201_CREATED)

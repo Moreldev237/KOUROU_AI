@@ -11,7 +11,7 @@ import logging
 
 from django.db import transaction
 
-from apps.quotas.services import consume_quota
+from apps.quotas.services import consume_quota, refund_quota
 from apps.quotas.tasks import log_token_usage
 
 from ..models import Question, QCMSession
@@ -20,38 +20,45 @@ from . import cache_service, gemini_client, prompt_templates
 logger = logging.getLogger("apps")
 
 
-def create_qcm_session(*, user, exam, subject, mode: str, difficulty: str, question_count: int) -> QCMSession:
+def create_qcm_session(*, user, exam, subject, topic=None, mode: str, difficulty: str, question_count: int, language: str = "fr") -> QCMSession:
     consume_quota(user, exam=exam)  # lève QuotaExceededException si dépassé
 
     cache_key = cache_service.build_cache_key(
         exam_id=exam.id,
         subject_id=subject.id,
-        topic_id=None,
+        topic_id=topic.id if topic else None,
         mode=mode,
         difficulty=difficulty,
         question_count=question_count,
+        language=language,
     )
 
     payload, cached_generation = cache_service.get_cached_payload(cache_key)
     served_from_cache = payload is not None
 
     if payload is None:
-        payload, cached_generation = _generate_and_cache(
-            user=user,
-            cache_key=cache_key,
-            exam=exam,
-            subject=subject,
-            mode=mode,
-            difficulty=difficulty,
-            question_count=question_count,
-        )
+        try:
+            payload, cached_generation = _generate_and_cache(
+                user=user,
+                cache_key=cache_key,
+                exam=exam,
+                subject=subject,
+                mode=mode,
+                difficulty=difficulty,
+                question_count=question_count,
+                topic=topic,
+                language=language,
+            )
+        except Exception:
+            refund_quota(user, exam=exam)
+            raise
 
     with transaction.atomic():
         session = QCMSession.objects.create(
             user=user,
             exam=exam,
             subject=subject,
-            topic=None,
+            topic=topic,
             mode=mode,
             difficulty=difficulty,
             served_from_cache=served_from_cache,
@@ -74,8 +81,9 @@ def create_qcm_session(*, user, exam, subject, mode: str, difficulty: str, quest
     return session
 
 
-def _generate_and_cache(*, user, cache_key, exam, subject, mode, difficulty, question_count):
-    syllabus_text = "\n".join(t.syllabus_reference for t in subject.topics.all() if t.syllabus_reference)
+def _generate_and_cache(*, user, cache_key, exam, subject, topic, mode, difficulty, question_count, language):
+    topics = [topic] if topic else subject.topics.all()
+    syllabus_text = "\n".join(t.syllabus_reference for t in topics if t.syllabus_reference)
 
     system_instruction = prompt_templates.qcm_system_instruction()
     cached_content_name = gemini_client.get_or_create_context_cache(
@@ -86,9 +94,11 @@ def _generate_and_cache(*, user, cache_key, exam, subject, mode, difficulty, que
     prompt = prompt_templates.build_qcm_prompt(
         exam_name=exam.name,
         subject_name=subject.name,
-        syllabus_reference=syllabus_text,
+        # Le programme est déjà inclus dans le contexte Gemini mis en cache.
+        syllabus_reference="" if cached_content_name else syllabus_text,
         difficulty=difficulty,
         question_count=question_count,
+        language=language,
     )
 
     data, tokens_used = gemini_client.generate_qcm(
@@ -106,7 +116,7 @@ def _generate_and_cache(*, user, cache_key, exam, subject, mode, difficulty, que
         cache_key=cache_key,
         exam=exam,
         subject=subject,
-        topic=None,
+        topic=topic,
         mode=mode,
         difficulty=difficulty,
         question_count=question_count,

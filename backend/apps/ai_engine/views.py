@@ -53,9 +53,11 @@ class GenerateQCMView(APIView):
             user=request.user,
             exam=d["exam"],
             subject=d["subject"],
+            topic=d.get("topic"),
             mode=d["mode"],
             difficulty=d["difficulty"],
             question_count=d["question_count"],
+            language=d["language"],
         )
         return Response(s.QCMSessionSerializer(session).data, status=status.HTTP_201_CREATED)
 
@@ -115,7 +117,7 @@ class QCMSessionHistoryView(generics.ListAPIView):
 
 
 @extend_schema(tags=["Moteur IA — QCM"])
-class QCMSessionDetailView(generics.RetrieveAPIView):
+class QCMSessionDetailView(generics.RetrieveDestroyAPIView):
     """
     Détail d'une session : questions sans réponse tant qu'elle est en cours,
     correction complète une fois terminée.
@@ -129,7 +131,7 @@ class QCMSessionDetailView(generics.RetrieveAPIView):
         return QCMSession.objects.filter(user=self.request.user).prefetch_related("questions__answer")
 
 
-@extend_schema(tags=["Tuteur IA"])
+@extend_schema(tags=["Kourou AI"])
 class TutorConversationListView(generics.ListAPIView):
     serializer_class = s.TutorConversationSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -140,7 +142,7 @@ class TutorConversationListView(generics.ListAPIView):
         return TutorConversation.objects.filter(user=self.request.user)
 
 
-@extend_schema(tags=["Tuteur IA"])
+@extend_schema(tags=["Kourou AI"])
 class TutorConversationMessagesView(generics.ListAPIView):
     serializer_class = s.TutorMessageSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -155,7 +157,7 @@ class TutorConversationMessagesView(generics.ListAPIView):
 
 
 @extend_schema(
-    tags=["Tuteur IA"],
+    tags=["Kourou AI"],
     request=s.TutorChatRequestSerializer,
     responses={
         200: OpenApiResponse(
@@ -171,7 +173,7 @@ class TutorConversationMessagesView(generics.ListAPIView):
 )
 class TutorChatView(APIView):
     """
-    Tuteur IA interactif, réponse en streaming SSE (NFR : rendu en moins de 3s).
+    Kourou AI interactif, réponse en streaming SSE (NFR : rendu en moins de 3s).
     Le client mobile consomme ce endpoint en POST via une librairie compatible
     EventSource+POST (voir mobile/src/hooks/useTutorStream.ts, react-native-sse).
     """
@@ -210,6 +212,7 @@ class TutorChatView(APIView):
             subject_name=conversation.subject.name if conversation.subject else None,
             topic_name=conversation.topic.name if conversation.topic else None,
             documents=documents,
+            language=d["language"],
         )
         history = _build_gemini_history(conversation)
 

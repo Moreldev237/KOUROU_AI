@@ -8,11 +8,12 @@ import { WebView, type WebViewNavigation } from "react-native-webview";
 import { baseApi } from "@/store/api/baseApi";
 import { useAppDispatch } from "@/store/hooks";
 import { colors, spacing, typography } from "@/theme";
+import { useLanguage } from "@/i18n";
 
 // Doit correspondre au chemin contenu dans PAYMENT_RETURN_URL côté backend
 // (voir backend/.env.example). Dès que la WebView navigue vers une URL
 // contenant ce segment, on considère le paiement terminé côté utilisateur et
-// on referme l'écran (le statut réel, lui, vient du webhook CinetPay -> notre
+// on referme l'écran (le statut réel, lui, vient du webhook KPay -> notre
 // backend, jamais de cette navigation qui n'est qu'un signal visuel).
 const RETURN_URL_MARKER = "/paiement/retour";
 
@@ -20,6 +21,7 @@ export default function PaymentWebViewScreen() {
   const { url } = useLocalSearchParams<{ url: string }>();
   const insets = useSafeAreaInsets();
   const dispatch = useAppDispatch();
+  const { t } = useLanguage();
 
   const handleNavigationChange = useCallback(
     (navState: WebViewNavigation) => {
@@ -39,7 +41,7 @@ export default function PaymentWebViewScreen() {
         <Pressable onPress={() => router.back()} style={styles.closeButton}>
           <Ionicons name="close" size={22} color={colors.textPrimary} />
         </Pressable>
-        <Text style={styles.headerTitle}>Paiement Mobile Money</Text>
+        <Text style={styles.headerTitle}>{t("Paiement Mobile Money")}</Text>
         <View style={{ width: 22 }} />
       </View>
       {url ? (

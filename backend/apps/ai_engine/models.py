@@ -140,7 +140,7 @@ class UserAnswer(models.Model):
 
 
 class TutorConversation(models.Model):
-    """Un fil de discussion avec le Tuteur IA (Module 2 : Tuteur IA Interactif)."""
+    """Un fil de discussion avec Kourou AI (Module 2 : assistant interactif)."""
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="tutor_conversations")
@@ -163,7 +163,7 @@ class TutorConversation(models.Model):
 
 class MessageRole(models.TextChoices):
     USER = "user", "Candidat"
-    ASSISTANT = "assistant", "Tuteur IA"
+    ASSISTANT = "assistant", "Kourou AI"
 
 
 class TutorMessage(models.Model):

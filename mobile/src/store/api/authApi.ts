@@ -1,7 +1,7 @@
 import { baseApi } from "@/store/api/baseApi";
 import type { AuthTokens, StudyLevel, User } from "@/types";
 
-interface RegisterRequest {
+export interface RegisterRequest {
   phone_number?: string;
   email?: string;
   password: string;

@@ -2,6 +2,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, type View
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { colors, spacing } from "@/theme";
+import { BrandMark } from "@/components/BrandMark";
 
 interface ScreenContainerProps extends ViewProps {
   scrollable?: boolean;
@@ -20,6 +21,7 @@ export function ScreenContainer({ children, scrollable = false, padded = true, s
       ]}
       {...rest}
     >
+      <BrandMark />
       {children}
     </View>
   );

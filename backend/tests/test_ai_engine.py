@@ -71,6 +71,20 @@ class TestQCMGenerationCache:
         assert response.status_code == 429
         assert response.data["error"]["code"] == "quota_exceeded"
 
+    def test_user_can_delete_own_session(self, auth_client, registered_user, exam, subject):
+        _seed_cache(exam, subject)
+        session_response = auth_client.post(
+            "/api/ai/qcm/generate/",
+            {"exam": exam.id, "subject": subject.id, "mode": "qcm_batch", "difficulty": "moyen", "question_count": 3},
+            format="json",
+        )
+
+        session_id = session_response.data["id"]
+        response = auth_client.delete(f"/api/ai/qcm/sessions/{session_id}/")
+
+        assert response.status_code == 204
+        assert not QCMSession.objects.filter(id=session_id).exists()
+
 
 @pytest.mark.django_db
 class TestSubmitAnswer:

@@ -7,12 +7,14 @@ import { ScreenContainer } from "@/components/ScreenContainer";
 import { TextField } from "@/components/TextField";
 import { useChangePasswordMutation } from "@/store/api/authApi";
 import { colors, spacing, typography } from "@/theme";
+import { useLanguage } from "@/i18n";
 
 export default function ChangePasswordScreen() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const [changePassword, { isLoading, error }] = useChangePasswordMutation();
 
@@ -26,7 +28,7 @@ export default function ChangePasswordScreen() {
 
     try {
       await changePassword({ current_password: currentPassword, new_password: newPassword }).unwrap();
-      setSuccessMessage("Mot de passe modifié avec succès.");
+      setSuccessMessage(t("Mot de passe modifié avec succès."));
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
@@ -41,34 +43,34 @@ export default function ChangePasswordScreen() {
   return (
     <ScreenContainer scrollable>
       <View style={styles.header}>
-        <Text style={styles.title}>Changer le mot de passe</Text>
-        <Text style={styles.subtitle}>Saisissez votre mot de passe actuel puis choisissez un nouveau mot de passe.</Text>
+        <Text style={styles.title}>{t("Changer le mot de passe")}</Text>
+        <Text style={styles.subtitle}>{t("Saisissez votre mot de passe actuel puis choisissez un nouveau mot de passe.")}</Text>
       </View>
 
       <ErrorBanner error={error} />
       {successMessage ? <Text style={styles.successText}>{successMessage}</Text> : null}
 
       <TextField
-        label="Mot de passe actuel"
+        label={t("Mot de passe actuel")}
         value={currentPassword}
         onChangeText={setCurrentPassword}
         secureTextEntry
       />
       <TextField
-        label="Nouveau mot de passe"
+        label={t("Nouveau mot de passe")}
         value={newPassword}
         onChangeText={setNewPassword}
         secureTextEntry
       />
       <TextField
-        label="Confirmer le nouveau mot de passe"
+        label={t("Confirmer le nouveau mot de passe")}
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
 
       <Button
-        label={isLoading ? "Enregistrement..." : "Modifier le mot de passe"}
+        label={isLoading ? t("Enregistrement...") : t("Modifier le mot de passe")}
         loading={isLoading}
         onPress={handleSubmit}
         disabled={isButtonDisabled}

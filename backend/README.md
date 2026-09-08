@@ -56,8 +56,9 @@ même fonction et changer `SMS_BACKEND` dans `.env`.
 
 ## Rappel sécurité paiement
 
-`apps/payments/gateways/cinetpay.py` et `apps/payments/views.py::PaymentWebhookView`
-ne font JAMAIS confiance au contenu du webhook CinetPay : chaque notification
-déclenche un appel serveur-à-serveur de vérification (`/v2/payment/check`)
+`apps/payments/gateways/kpay.py` et `apps/payments/views.py::PaymentWebhookView`
+ne font JAMAIS confiance au contenu du webhook KPay : chaque notification
+est vérifiée par HMAC puis confirmée par un appel serveur-à-serveur
+(`GET /api/v1/payments/:id`)
 avant toute activation d'abonnement. Conserver ce principe si vous ajoutez
 une autre passerelle.

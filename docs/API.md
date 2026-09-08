@@ -61,9 +61,10 @@ Format d'erreur uniforme sur toute l'API :
 |---|---|---|---|
 | GET | `plans/` | oui | Catalogue des plans tarifaires |
 | POST | `initiate/` | oui | `{plan}` → crée une transaction, renvoie `payment_url` (à ouvrir en WebView) |
-| POST | `webhook/cinetpay/` | **non** (public) | Appelé uniquement par CinetPay — jamais par le mobile |
+| POST | `webhook/kpay/` | **non** (public) | Appelé uniquement par KPay — jamais par le mobile |
 | GET | `transactions/` | oui | Historique des transactions du candidat |
 | GET | `subscription/me/` | oui | Abonnement actif, ou `null` |
+| GET | `packs/me/` | oui | Supports Google Drive accessibles via les abonnements actifs |
 
 ## Back-office — `/api/backoffice/` (staff uniquement)
 

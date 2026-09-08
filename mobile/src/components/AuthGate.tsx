@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 
 import { getAccessToken } from "@/api/tokenStorage";
 import { useLazyGetMeQuery } from "@/store/api/authApi";
 import { hydrationFinished, setUser } from "@/store/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { StartupSplash } from "@/components/StartupSplash";
 
 /**
  * Au démarrage de l'app : si un token d'accès est déjà stocké (Keychain /
@@ -16,6 +18,9 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
   const isHydrating = useAppSelector((state) => state.auth.isHydrating);
   const [fetchMe] = useLazyGetMeQuery();
+  const [showStartupSplash, setShowStartupSplash] = useState(true);
+
+  const finishStartupSplash = useCallback(() => setShowStartupSplash(false), []);
 
   useEffect(() => {
     (async () => {
@@ -43,5 +48,10 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
 
   if (isHydrating) return null;
 
-  return <>{children}</>;
+  return (
+    <View style={{ flex: 1 }}>
+      {children}
+      {showStartupSplash && <StartupSplash onFinished={finishStartupSplash} />}
+    </View>
+  );
 }

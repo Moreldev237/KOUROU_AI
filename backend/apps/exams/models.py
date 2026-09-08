@@ -11,8 +11,14 @@ class Exam(models.Model):
     organizing_body = models.CharField(
         max_length=150, blank=True, help_text="Ex : Ministère de la Fonction Publique"
     )
+    prize_amount_fcfa = models.PositiveIntegerField(
+        default=0,
+        blank=True,
+        help_text="Montant du prix attribué au gagnant, en FCFA.",
+    )
     icon_emoji = models.CharField(max_length=8, blank=True, default="🎓")
     color_hex = models.CharField(max_length=7, blank=True, default="#1B4F91")
+    cover_image_url = models.URLField(blank=True, help_text="Image de couverture du concours affichée dans les supports.")
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

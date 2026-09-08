@@ -68,6 +68,32 @@ def consume_quota(user, cost: int = 1, exam=None) -> UserQuota:
     return quota
 
 
+@transaction.atomic
+def refund_quota(user, cost: int = 1, exam=None) -> None:
+    """Restitue un coût réservé quand une génération externe n'aboutit pas."""
+    has_global_access = Subscription.objects.filter(
+        user=user,
+        status=SubscriptionStatus.ACTIVE,
+        end_date__gt=timezone.now(),
+        plan__is_unlimited_generation=True,
+        plan__exam__isnull=True,
+    ).exists()
+    has_exam_access = exam is not None and Subscription.objects.filter(
+        user=user,
+        status=SubscriptionStatus.ACTIVE,
+        end_date__gt=timezone.now(),
+        plan__is_unlimited_generation=True,
+        plan__exam=exam,
+    ).exists()
+    if (user.is_premium and exam is None) or has_global_access or has_exam_access:
+        return
+    quota = UserQuota.objects.select_for_update().filter(user=user).first()
+    if quota is None:
+        return
+    quota.used_today = max(0, quota.used_today - cost)
+    quota.save(update_fields=["used_today"])
+
+
 def reset_all_daily_quotas() -> int:
     """Utilisé par la tâche Celery Beat quotidienne (voir tasks.py)."""
     return UserQuota.objects.update(used_today=0, last_reset_date=date.today())

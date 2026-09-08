@@ -6,7 +6,9 @@ import { Provider } from "react-redux";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { AuthGate } from "@/components/AuthGate";
+import { GdprConsentBanner } from "@/components/GdprConsentBanner";
 import { store } from "@/store";
+import { LanguageProvider } from "@/i18n";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -21,16 +23,28 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <StatusBar style="dark" />
-        <AuthGate>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(auth)" />
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="change-password" />
-            <Stack.Screen name="qcm/[id]" options={{ animation: "slide_from_right" }} />
-            <Stack.Screen name="payment-webview" options={{ presentation: "modal" }} />
-          </Stack>
-        </AuthGate>
+        <LanguageProvider>
+          <StatusBar style="dark" />
+          <AuthGate>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen name="change-password" />
+              <Stack.Screen name="qcm/[id]" options={{ animation: "slide_from_right" }} />
+              <Stack.Screen name="payment-webview" options={{ presentation: "modal" }} />
+              <Stack.Screen name="privacy-policy" options={{ presentation: "modal" }} />
+              <Stack.Screen name="admin-stats" options={{ presentation: "modal" }} />
+              <Stack.Screen name="about" options={{ presentation: "modal" }} />
+              <Stack.Screen name="support" options={{ presentation: "modal" }} />
+              <Stack.Screen name="rate-app" options={{ presentation: "modal" }} />
+              <Stack.Screen name="license" options={{ presentation: "modal" }} />
+              <Stack.Screen name="disclaimer" options={{ presentation: "modal" }} />
+              <Stack.Screen name="faq" options={{ presentation: "modal" }} />
+              <Stack.Screen name="support-category" options={{ presentation: "modal" }} />
+            </Stack>
+            <GdprConsentBanner />
+          </AuthGate>
+        </LanguageProvider>
       </SafeAreaProvider>
     </Provider>
   );

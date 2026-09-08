@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { colors, radii, spacing, typography } from "@/theme";
+import { useLanguage } from "@/i18n";
 
 interface ErrorBannerProps {
   error: unknown;
@@ -53,7 +54,8 @@ export function extractErrorMessage(error: unknown): string {
 }
 
 export function ErrorBanner({ error }: ErrorBannerProps) {
-  const message = extractErrorMessage(error);
+  const { t } = useLanguage();
+  const message = t(extractErrorMessage(error));
   if (!message) return null;
 
   return (

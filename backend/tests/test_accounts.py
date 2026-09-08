@@ -12,29 +12,35 @@ def test_superuser_username_field_uses_email():
 
 @pytest.mark.django_db
 class TestRegistration:
-    def test_register_by_email_is_immediately_active(self, api_client):
+    def test_register_by_email_requires_otp(self, api_client):
         response = api_client.post(
             "/api/auth/register/",
             {"email": "nouveau@example.cm", "password": "motdepasse123", "full_name": "Nouveau Candidat"},
             format="json",
         )
         assert response.status_code == 201
-        assert "access" in response.data
-        assert response.data["user"]["email"] == "nouveau@example.cm"
+        assert response.data["requires_otp"] is True
+        assert response.data["email"] == "nouveau@example.cm"
+        assert "access" not in response.data
 
-    def test_register_by_phone_requires_otp(self, api_client):
+        user = User.objects.get(email="nouveau@example.cm")
+        assert user.is_active is False
+        assert OTPCode.objects.filter(user=user, purpose=OTPPurpose.REGISTRATION).exists()
+
+    def test_register_by_phone_is_immediately_active(self, api_client):
         response = api_client.post(
             "/api/auth/register/",
             {"phone_number": "677123456", "password": "motdepasse123", "full_name": "Candidat Mobile"},
             format="json",
         )
         assert response.status_code == 201
-        assert response.data["requires_otp"] is True
-        assert "access" not in response.data
+        assert "access" in response.data
+        assert response.data["user"]["phone_number"] == "+237677123456"
 
         user = User.objects.get(phone_number="+237677123456")
-        assert user.is_active is False
-        assert OTPCode.objects.filter(user=user, purpose=OTPPurpose.REGISTRATION).exists()
+        assert user.is_active is True
+        assert user.phone_verified is True
+        assert not OTPCode.objects.filter(user=user, purpose=OTPPurpose.REGISTRATION).exists()
 
     def test_register_without_phone_or_email_is_rejected(self, api_client):
         response = api_client.post(
@@ -56,30 +62,30 @@ class TestOTPVerification:
     def test_verify_correct_otp_activates_account_and_returns_tokens(self, api_client):
         api_client.post(
             "/api/auth/register/",
-            {"phone_number": "677654321", "password": "motdepasse123", "full_name": "Candidat OTP"},
+            {"email": "otp@example.cm", "password": "motdepasse123", "full_name": "Candidat OTP"},
             format="json",
         )
-        user = User.objects.get(phone_number="+237677654321")
+        user = User.objects.get(email="otp@example.cm")
         otp = OTPCode.objects.get(user=user, purpose=OTPPurpose.REGISTRATION)
 
         response = api_client.post(
-            "/api/auth/otp/verify/", {"phone_number": "677654321", "code": otp.code}, format="json"
+            "/api/auth/otp/verify/", {"email": "otp@example.cm", "code": otp.code}, format="json"
         )
         assert response.status_code == 200
         assert "access" in response.data
 
         user.refresh_from_db()
         assert user.is_active is True
-        assert user.phone_verified is True
+        assert user.email_verified is True
 
     def test_verify_wrong_otp_is_rejected(self, api_client):
         api_client.post(
             "/api/auth/register/",
-            {"phone_number": "677111222", "password": "motdepasse123", "full_name": "Candidat OTP"},
+            {"email": "wrong-otp@example.cm", "password": "motdepasse123", "full_name": "Candidat OTP"},
             format="json",
         )
         response = api_client.post(
-            "/api/auth/otp/verify/", {"phone_number": "677111222", "code": "000000"}, format="json"
+            "/api/auth/otp/verify/", {"email": "wrong-otp@example.cm", "code": "000000"}, format="json"
         )
         assert response.status_code == 400
         assert response.data["error"]["code"] == "invalid_otp"

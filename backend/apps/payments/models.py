@@ -15,6 +15,10 @@ class SubscriptionPlan(models.Model):
     code = models.SlugField(max_length=50, unique=True)
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True)
+    google_drive_url = models.URLField(
+        blank=True,
+        help_text="Lien partagé Google Drive vers le support de formation débloqué après paiement.",
+    )
     exam = models.ForeignKey(
         "exams.Exam",
         null=True,
@@ -55,7 +59,7 @@ class Transaction(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="transactions")
     plan = models.ForeignKey(SubscriptionPlan, on_delete=models.PROTECT, related_name="transactions")
-    gateway = models.CharField(max_length=30, default="cinetpay")
+    gateway = models.CharField(max_length=30, default="kpay")
     provider_transaction_id = models.CharField(max_length=100, unique=True)
     amount_fcfa = models.PositiveIntegerField()
     status = models.CharField(max_length=20, choices=TransactionStatus.choices, default=TransactionStatus.PENDING)
@@ -88,8 +92,8 @@ class Subscription(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="subscriptions")
     plan = models.ForeignKey(SubscriptionPlan, on_delete=models.PROTECT, related_name="subscriptions")
     # Lien vers la transaction à l'origine de cet abonnement : sert aussi de
-    # verrou d'idempotence (le webhook de paiement peut être rappelé plusieurs
-    # fois par CinetPay ; voir apps/payments/signals.py).
+    # verrou d'idempotence (le webhook KPay peut être rappelé plusieurs fois ;
+    # voir apps/payments/signals.py).
     source_transaction = models.OneToOneField(
         Transaction, null=True, blank=True, on_delete=models.SET_NULL, related_name="subscription"
     )

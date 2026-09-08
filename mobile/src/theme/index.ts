@@ -11,6 +11,7 @@ export const colors = {
   primary: "#235AA4", // bleu principal — boutons, liens, éléments actifs
   primaryDark: "#122B6E", // bleu marine profond — en-têtes, fonds contrastés
   primaryLight: "#4A7FC4", // variante claire — états hover/pressed, dégradés
+  primarySoft: "#EAF2FB", // fond léger — cartes et états sélectionnés
   accentSky: "#4FB6FF", // bleu ciel — mise en avant secondaire, infos
   accentGreen: "#29B875", // vert — succès, bonne réponse, progression
 

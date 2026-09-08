@@ -46,11 +46,11 @@ src/
 - **Tokens JWT** stockés via `expo-secure-store` (Keychain/Keystore natif),
   jamais dans `AsyncStorage`. Rafraîchissement automatique sur 401
   (`src/store/api/baseApi.ts`).
-- **Tuteur IA en streaming** : `react-native-sse` (pas `fetch`+`ReadableStream`,
+- **Kourou AI en streaming** : `react-native-sse` (pas `fetch`+`ReadableStream`,
   au support inégal sur Hermes) — voir `src/hooks/useTutorStream.ts`.
-- **Paiement Mobile Money** : `app/payment-webview.tsx` ouvre l'URL CinetPay
+- **Paiement Mobile Money** : `app/payment-webview.tsx` ouvre l'URL KPay
   dans une WebView et détecte automatiquement le retour de paiement.
-- Aucune donnée sensible (clé Gemini, clé CinetPay) n'existe côté mobile :
+- Aucune donnée sensible (clé Gemini, clés KPay) n'existe côté mobile :
   tous les appels IA et paiement passent par le backend.
 
 ## Prochaines améliorations possibles

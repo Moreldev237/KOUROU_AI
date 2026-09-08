@@ -16,6 +16,7 @@ interface GenerateQCMRequest {
   mode?: SessionMode;
   difficulty?: Difficulty;
   question_count?: number;
+  language?: "fr" | "en";
 }
 
 interface SubmitAnswerRequest {
@@ -27,12 +28,12 @@ export const aiEngineApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     generateQCM: builder.mutation<QCMSession, GenerateQCMRequest>({
       query: (body) => ({ url: "/ai/qcm/generate/", method: "POST", body }),
-      invalidatesTags: ["Quota"],
+      invalidatesTags: ["Quota", "QCMSession"],
     }),
 
     submitAnswer: builder.mutation<SubmitAnswerResult, SubmitAnswerRequest>({
       query: (body) => ({ url: "/ai/qcm/answer/", method: "POST", body }),
-      invalidatesTags: (_result, _err, arg) => [{ type: "QCMSession", id: "CURRENT" }],
+      invalidatesTags: [{ type: "QCMSession", id: "CURRENT" }, "QCMSession"],
     }),
 
     getQCMSession: builder.query<QCMSession, string>({
@@ -40,8 +41,14 @@ export const aiEngineApi = baseApi.injectEndpoints({
       providesTags: (_result, _err, id) => [{ type: "QCMSession", id }, { type: "QCMSession", id: "CURRENT" }],
     }),
 
+    deleteQCMSession: builder.mutation<void, string>({
+      query: (id) => ({ url: `/ai/qcm/sessions/${id}/`, method: "DELETE" }),
+      invalidatesTags: ["QCMSession"],
+    }),
+
     getQCMHistory: builder.query<{ results: QCMSessionListItem[] }, void>({
       query: () => "/ai/qcm/history/",
+      providesTags: ["QCMSession"],
     }),
 
     listTutorConversations: builder.query<{ results: TutorConversation[] }, void>({
@@ -59,6 +66,7 @@ export const {
   useGenerateQCMMutation,
   useSubmitAnswerMutation,
   useGetQCMSessionQuery,
+  useDeleteQCMSessionMutation,
   useGetQCMHistoryQuery,
   useListTutorConversationsQuery,
   useGetTutorMessagesQuery,

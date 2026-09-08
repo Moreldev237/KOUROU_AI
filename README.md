@@ -13,9 +13,9 @@
 ## Aperçu
 
 KOUROU AI accompagne les candidats aux concours administratifs à travers des
-QCM générés par IA, des corrections détaillées, un tuteur IA conversationnel
+QCM générés par IA, des corrections détaillées, Kourou AI conversationnel
 et un suivi de progression — avec des abonnements payables par Mobile Money
-(MTN MoMo, Orange Money via CinetPay).
+(MTN MoMo, Orange Money via KPay).
 
 Le projet est livré en deux parties :
 
@@ -49,7 +49,7 @@ URLs, tests) et un ensemble d'écrans mobiles dédiés — voir
 # 1. Configuration
 cp backend/.env.example backend/.env
 # -> éditer backend/.env : au minimum SECRET_KEY, GEMINI_API_KEY,
-#    CINETPAY_API_KEY / CINETPAY_SITE_ID (voir commentaires dans le fichier)
+#    KPAY_API_KEY / KPAY_SECRET_KEY (voir commentaires dans le fichier)
 
 # 2. Lancer toute la stack (PostgreSQL, Redis, Django, Celery, Nginx)
 docker compose up --build
@@ -78,7 +78,7 @@ python manage.py loaddata initial_exams initial_plans
 python manage.py setup_periodic_tasks
 python manage.py runserver
 
-# Dans un 2e terminal : le worker Celery (nécessaire pour le tuteur IA et les quotas)
+# Dans un 2e terminal : le worker Celery (nécessaire pour Kourou AI et les quotas)
 celery -A config worker --loglevel=info
 # Dans un 3e terminal : le planificateur (reset quotidien des quotas)
 celery -A config beat --loglevel=info
@@ -111,7 +111,7 @@ Le code est complet et fonctionnel, mais certaines valeurs ne peuvent
 évidemment pas être générées à votre place :
 
 - Une clé **Gemini API** ([aistudio.google.com/apikey](https://aistudio.google.com/apikey)) — vérifier le nom de modèle courant sur [ai.google.dev/gemini-api/docs/models](https://ai.google.dev/gemini-api/docs/models), les modèles Gemini étant renouvelés régulièrement.
-- Un compte marchand **CinetPay** (ou adapter `backend/apps/payments/gateways/` pour Monetbil / Notch Pay).
+- Un compte marchand **KPay** avec ses clés API.
 - Un **VPS** avec domaine + certificat SSL — voir [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
 - Un vrai fournisseur **SMS** pour les codes OTP (`backend/apps/accounts/services.py` — le mode `console` actuel journalise simplement les codes, pratique pour développer sans dépenser de crédits SMS).
 

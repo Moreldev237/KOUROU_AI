@@ -1,84 +1,51 @@
-import { useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, StyleSheet, Switch, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { TextField } from "@/components/TextField";
-import { useGetMeQuery, useUpdateMeMutation } from "@/store/api/authApi";
-import { useAppDispatch } from "@/store/hooks";
-import { setUser } from "@/store/authSlice";
-import { useListExamsQuery } from "@/store/api/examsApi";
+import { useLanguage } from "@/i18n";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useGetMeQuery } from "@/store/api/authApi";
 import { useAuth } from "@/hooks/useAuth";
-import { colors, radii, spacing, typography } from "@/theme";
-import type { ExamListItem, StudyLevel } from "@/types";
-
-const STUDY_LEVELS: { label: string; value: StudyLevel }[] = [
-  { label: "CEP", value: "cep" },
-  { label: "BEPC", value: "bepc" },
-  { label: "BAC", value: "bac" },
-  { label: "Licence", value: "licence" },
-  { label: "Master", value: "master" },
-  { label: "Autre", value: "autre" },
-];
+import { colors, radii, shadows, spacing, typography } from "@/theme";
+import { disableTrainingReminder, enableTrainingReminder, isTrainingReminderEnabled } from "@/api/trainingReminder";
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
+  const { language, t } = useLanguage();
   const { data: user } = useGetMeQuery();
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [studyLevel, setStudyLevel] = useState<StudyLevel>("bac");
-  const [showStudyModal, setShowStudyModal] = useState(false);
-  const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [updateMe, { isLoading: isSaving }] = useUpdateMeMutation();
-  const dispatch = useAppDispatch();
+  const [reminderEnabled, setReminderEnabled] = useState(false);
+  const [isUpdatingReminder, setIsUpdatingReminder] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { logout } = useAuth();
 
   useEffect(() => {
-    if (user) {
-      setFullName(user.full_name || "");
-      setPhoneNumber(user.phone_number || "");
-      setStudyLevel(user.study_level || "bac");
-    }
-  }, [user]);
+    isTrainingReminderEnabled().then(setReminderEnabled).catch(() => {});
+  }, []);
 
-  const handleSaveProfile = async () => {
-    if (!user) return;
-
-    const trimmedFullName = fullName.trim();
-    const trimmedPhone = phoneNumber.trim();
-    const changedFields: Partial<{ full_name: string; phone_number: string; study_level: StudyLevel }> = {};
-
-    if (trimmedFullName && trimmedFullName !== user.full_name) {
-      changedFields.full_name = trimmedFullName;
-    }
-    if (trimmedPhone !== (user.phone_number || "")) {
-      changedFields.phone_number = trimmedPhone;
-    }
-    
-    if (studyLevel !== user.study_level) {
-      changedFields.study_level = studyLevel;
-    }
-
-    if (!Object.keys(changedFields).length) {
-      setStatusMessage("Aucune modification à enregistrer.");
-      return;
-    }
-
+  const handleReminderChange = async (enabled: boolean) => {
+    setIsUpdatingReminder(true);
     try {
-      const updated = await updateMe(changedFields).unwrap();
-      dispatch(setUser(updated));
-      setStatusMessage("Profil mis à jour.");
+      if (enabled) {
+        const scheduled = await enableTrainingReminder(language);
+        if (!scheduled) {
+          Alert.alert(t("Rappel d'entraînement"), t("Autorisez les notifications pour activer le rappel."));
+          return;
+        }
+      } else {
+        await disableTrainingReminder();
+      }
+      setReminderEnabled(enabled);
     } catch {
-      setStatusMessage("Impossible de mettre à jour le profil.");
+      Alert.alert(t("Rappel d'entraînement"), t("Impossible de modifier le rappel pour le moment."));
+    } finally {
+      setIsUpdatingReminder(false);
     }
   };
 
   const confirmLogout = () => {
-    Alert.alert("Se déconnecter", "Voulez-vous vraiment vous déconnecter ?", [
-      { text: "Annuler", style: "cancel" },
-      { text: "Se déconnecter", style: "destructive", onPress: logout },
-    ]);
+    setShowLogoutModal(true);
   };
 
   if (!user) {
@@ -92,137 +59,187 @@ export default function ProfileScreen() {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={{ paddingTop: insets.top + spacing.lg, paddingHorizontal: spacing.xxl, paddingBottom: spacing.huge }}
+      contentContainerStyle={{ paddingTop: insets.top + spacing.lg, paddingHorizontal: spacing.lg, paddingBottom: spacing.huge }}
     >
       <View style={styles.avatarWrap}>
+        <Text style={styles.pageEyebrow}>{t("ESPACE CANDIDAT")}</Text>
         <View style={styles.avatar}>
           <Text style={styles.avatarInitial}>{(user.full_name || "?").charAt(0).toUpperCase()}</Text>
         </View>
-        <Text style={styles.name}>{user.full_name}</Text>
+        <Text style={styles.greeting}>{t("Bonjour,")}</Text>
+        <Text style={styles.name}>{user.full_name || t("Candidat")}</Text>
         <Text style={styles.contact}>{user.phone_number || user.email}</Text>
-        {user.referrer ? <Text style={styles.referrer}>Parrain : {user.referrer}</Text> : null}
+        {user.referrer ? <Text style={styles.referrer}>{t("Parrain :")} {user.referrer}</Text> : null}
         <View style={[styles.premiumBadge, user.is_premium ? styles.premiumActive : styles.premiumFree]}>
-          <Ionicons name={user.is_premium ? "star" : "ellipse"} size={12} color={colors.white} />
-          <Text style={styles.premiumBadgeText}>{user.is_premium ? "Compte Premium" : "Compte Gratuit"}</Text>
+          <Ionicons name={user.is_premium ? "star" : "person-outline"} size={13} color={user.is_premium ? colors.white : colors.primary} />
+          <Text style={[styles.premiumBadgeText, !user.is_premium && styles.premiumFreeText]}>{user.is_premium ? t("Compte Premium") : t("Compte Gratuit")}</Text>
         </View>
       </View>
 
-      <Text style={styles.sectionTitle}>Profil</Text>
-      <View style={styles.profileCard}>
-        <TextField label="Nom complet" value={fullName} onChangeText={setFullName} />
-        <TextField
-          label="Numéro de téléphone"
-          placeholder="+237XXXXXXXXX"
-          keyboardType="phone-pad"
-          value={phoneNumber}
-          onChangeText={setPhoneNumber}
-        />
-        <View style={styles.profileRow}>
-          <Text style={styles.profileLabel}>Email</Text>
-          <Text style={styles.profileValue}>{user.email || "Non renseigné"}</Text>
-        </View>
-        <View style={styles.profileRow}>
-          <Text style={styles.profileLabel}>Dernier diplôme</Text>
-          <Text style={styles.profileValue}>{STUDY_LEVELS.find((l) => l.value === studyLevel)?.label ?? studyLevel.toUpperCase()}</Text>
-        </View>
-        <Pressable style={styles.profileRow} onPress={() => setShowStudyModal(true)}>
-          <Text style={styles.profileLabel}>Modifier le dernier diplôme</Text>
-          <View style={styles.rowAction}>
-            <Text style={styles.profileValue}>{STUDY_LEVELS.find((l) => l.value === studyLevel)?.label}</Text>
-            <Ionicons name="chevron-down" size={18} color={colors.primary} />
-          </View>
-        </Pressable>
-
-        <Modal visible={showStudyModal} animationType="slide" transparent onRequestClose={() => setShowStudyModal(false)}>
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalContent}>
-              <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>Choisir le dernier diplôme</Text>
-                <TouchableOpacity onPress={() => setShowStudyModal(false)}>
-                  <Ionicons name="close" size={20} color={colors.textSecondary} />
-                </TouchableOpacity>
-              </View>
-              <ScrollView contentContainerStyle={{ gap: spacing.sm }}>
-                {STUDY_LEVELS.map((level) => (
-                  <Pressable
-                    key={level.value}
-                    onPress={() => {
-                      setStudyLevel(level.value);
-                      setShowStudyModal(false);
-                    }}
-                    style={[styles.modalItem, studyLevel === level.value && styles.modalItemActive]}
-                  >
-                    <Text style={[styles.modalItemText, studyLevel === level.value && styles.modalItemTextActive]}>
-                      {level.label}
-                    </Text>
-                  </Pressable>
-                ))}
-              </ScrollView>
-            </View>
-          </View>
-        </Modal>
-        {/* Concours visé déplacé : sélection se fait depuis l'écran Entraînement */}
-      </View>
-
-      {statusMessage ? <Text style={styles.statusMessage}>{statusMessage}</Text> : null}
-
-      <Pressable style={[styles.saveButton, isSaving && styles.saveButtonDisabled]} onPress={handleSaveProfile} disabled={isSaving}>
-        {isSaving ? (
-          <ActivityIndicator color={colors.white} />
-        ) : (
-          <Text style={styles.saveButtonText}>Enregistrer les modifications</Text>
-        )}
-      </Pressable>
-
-      <Text style={styles.sectionTitle}>Mes filleuls</Text>
+      <Text style={styles.sectionTitle}>{t("Mes filleuls")}</Text>
       <View style={styles.profileCard}>
         {user.referred_users.length ? (
           user.referred_users.map((filleul) => (
             <View key={filleul.id} style={styles.filleulRow}>
               <Text style={styles.filleulName}>{filleul.full_name}</Text>
-              <Text style={styles.filleulContact}>{filleul.phone_number || filleul.email || "Contact non renseigné"}</Text>
+              <Text style={styles.filleulContact}>{filleul.phone_number || filleul.email || t("Contact non renseigné")}</Text>
             </View>
           ))
         ) : (
-          <Text style={styles.profileValue}>Aucun filleul pour le moment.</Text>
+          <Text style={styles.profileValue}>{t("Aucun filleul pour le moment.")}</Text>
         )}
       </View>
 
-      <Text style={styles.sectionTitle}>Préférences</Text>
-      <Pressable style={styles.linkCard} onPress={() => router.push("/(tabs)/subscription")}>
+      <Text style={styles.sectionTitle}>{t("preferences")}</Text>
+      <View style={styles.sectionBlock}>
+      <View style={styles.linkCard}>
         <View style={styles.linkCardIcon}>
-          <Ionicons name="card-outline" size={20} color={colors.primary} />
+          <Ionicons name="language-outline" size={20} color={colors.primary} />
         </View>
         <View style={styles.linkCardTextWrap}>
-          <Text style={styles.linkCardTitle}>Gérer mon abonnement</Text>
-          <Text style={styles.linkCardSubtitle}>Voir mes formules et avantages</Text>
+          <Text style={styles.linkCardTitle}>{t("language")}</Text>
+          <Text style={styles.linkCardSubtitle}>{t("languageSubtitle")}</Text>
         </View>
-      </Pressable>
-      <Pressable style={styles.linkCard} onPress={() => router.push("/(tabs)/tutor")}>
+        <LanguageSwitcher compact />
+      </View>
+      <View style={styles.linkCard}>
         <View style={styles.linkCardIcon}>
-          <Ionicons name="chatbubbles-outline" size={20} color={colors.primary} />
+          <Ionicons name="notifications-outline" size={20} color={colors.primary} />
         </View>
         <View style={styles.linkCardTextWrap}>
-          <Text style={styles.linkCardTitle}>Mes conversations Tuteur IA</Text>
-          <Text style={styles.linkCardSubtitle}>Retrouver vos échanges avec le tuteur</Text>
+          <Text style={styles.linkCardTitle}>{t("Rappel d'entraînement")}</Text>
+          <Text style={styles.linkCardSubtitle}>{t("Recevoir un rappel chaque jour à 18 h")}</Text>
         </View>
+        <Switch
+          value={reminderEnabled}
+          onValueChange={handleReminderChange}
+          disabled={isUpdatingReminder}
+          trackColor={{ false: colors.border, true: colors.primaryLight }}
+          thumbColor={reminderEnabled ? colors.primary : colors.textTertiary}
+        />
+      </View>
+      </View>
+      <Text style={styles.sectionTitle}>{t("Aide et informations")}</Text>
+      <View style={styles.sectionBlock}>
+      <Pressable accessibilityRole="button" accessibilityLabel={t("Politique de confidentialité")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/privacy-policy")}>
+        <View style={styles.linkCardIcon}>
+          <Ionicons name="shield-checkmark-outline" size={20} color={colors.primary} />
+        </View>
+        <View style={styles.linkCardTextWrap}>
+          <Text style={styles.linkCardTitle}>{t("Politique de confidentialité")}</Text>
+          <Text style={styles.linkCardSubtitle}>{t("Consulter l'utilisation de vos données")}</Text>
+        </View>
+        <Ionicons name="chevron-forward" size={18} color={colors.primary} />
       </Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel={t("À propos")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/about")}>
+          <View style={styles.linkCardIcon}><Ionicons name="information-circle-outline" size={20} color={colors.primary} /></View>
+          <View style={styles.linkCardTextWrap}><Text style={styles.linkCardTitle}>{t("À propos")}</Text><Text style={styles.linkCardSubtitle}>{t("Découvrir Kourou AI")}</Text></View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Support client")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/support")}>
+          <View style={styles.linkCardIcon}><Ionicons name="headset-outline" size={20} color={colors.primary} /></View>
+          <View style={styles.linkCardTextWrap}><Text style={styles.linkCardTitle}>{t("Support client")}</Text><Text style={styles.linkCardSubtitle}>{t("Besoin d'aide ?")}</Text></View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Noter l'application")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/rate-app")}>
+          <View style={styles.linkCardIcon}><Ionicons name="star-outline" size={20} color={colors.primary} /></View>
+          <View style={styles.linkCardTextWrap}><Text style={styles.linkCardTitle}>{t("Noter l'application")}</Text><Text style={styles.linkCardSubtitle}>{t("Partager votre avis")}</Text></View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Licence")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/license")}>
+          <View style={styles.linkCardIcon}><Ionicons name="document-text-outline" size={20} color={colors.primary} /></View>
+          <View style={styles.linkCardTextWrap}><Text style={styles.linkCardTitle}>{t("Licence")}</Text><Text style={styles.linkCardSubtitle}>{t("Informations légales")}</Text></View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Clause de non-responsabilité")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/disclaimer")}>
+          <View style={styles.linkCardIcon}><Ionicons name="warning-outline" size={20} color={colors.primary} /></View>
+          <View style={styles.linkCardTextWrap}><Text style={styles.linkCardTitle}>{t("Clause de non-responsabilité")}</Text><Text style={styles.linkCardSubtitle}>{t("Limites de l'application")}</Text></View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Questions fréquentes")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/faq")}>
+          <View style={styles.linkCardIcon}><Ionicons name="help-circle-outline" size={20} color={colors.primary} /></View>
+          <View style={styles.linkCardTextWrap}><Text style={styles.linkCardTitle}>{t("Questions fréquentes")}</Text><Text style={styles.linkCardSubtitle}>{t("Trouver rapidement une réponse")}</Text></View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
 
-      <Text style={styles.sectionTitle}>Sécurité</Text>
-      <Pressable style={styles.linkCard} onPress={() => router.push("/change-password")}>
+      {user.is_staff ? (
+        <Pressable accessibilityRole="button" accessibilityLabel={t("Statistiques administrateur")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/admin-stats")}>
+          <View style={styles.linkCardIcon}>
+            <Ionicons name="bar-chart-outline" size={20} color={colors.primary} />
+          </View>
+          <View style={styles.linkCardTextWrap}>
+            <Text style={styles.linkCardTitle}>{t("Statistiques administrateur")}</Text>
+            <Text style={styles.linkCardSubtitle}>{t("Utilisateurs, abonnements et revenus")}</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+        </Pressable>
+      ) : null}
+      </View>
+
+      <Text style={styles.sectionTitle}>{t("Sécurité")}</Text>
+      <View style={styles.sectionBlock}>
+      <Pressable accessibilityRole="button" accessibilityLabel={t("Changer le mot de passe")} style={({ pressed }) => [styles.linkCard, pressed && styles.linkCardPressed]} onPress={() => router.push("/change-password")}>
         <View style={styles.linkCardIcon}>
           <Ionicons name="lock-closed-outline" size={20} color={colors.primary} />
         </View>
         <View style={styles.linkCardTextWrap}>
-          <Text style={styles.linkCardTitle}>Changer de mot de passe</Text>
-          <Text style={styles.linkCardSubtitle}>Modifier les accès de votre compte</Text>
+          <Text style={styles.linkCardTitle}>{t("Changer de mot de passe")}</Text>
+          <Text style={styles.linkCardSubtitle}>{t("Modifier les accès de votre compte")}</Text>
+        </View>
+      </Pressable>
+      </View>
+
+      <Text style={styles.sectionTitle}>{t("Compte")}</Text>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={t("Se déconnecter")}
+        style={({ pressed }) => [styles.logoutButton, pressed && styles.logoutButtonPressed]}
+        onPress={confirmLogout}
+      >
+        <View style={styles.logoutIcon}>
+          <Ionicons name="log-out-outline" size={19} color={colors.error} />
+        </View>
+        <View style={styles.logoutCopy}>
+          <Text style={styles.logoutText}>{t("Se déconnecter")}</Text>
+          <Text style={styles.logoutSubtitle}>{t("Fermer votre session sur cet appareil")}</Text>
         </View>
       </Pressable>
 
-      <Pressable style={styles.logoutButton} onPress={confirmLogout}>
-        <Ionicons name="log-out-outline" size={18} color={colors.error} />
-        <Text style={styles.logoutText}>Se déconnecter</Text>
-      </Pressable>
+      <Modal
+        visible={showLogoutModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowLogoutModal(false)}
+      >
+        <View style={styles.logoutOverlay}>
+          <View style={styles.logoutModal}>
+            <View style={styles.logoutModalIcon}>
+              <Ionicons name="log-out-outline" size={24} color={colors.error} />
+            </View>
+            <Text style={styles.logoutModalTitle}>{t("Se déconnecter ?")}</Text>
+            <Text style={styles.logoutModalText}>
+              {t("Voulez-vous vraiment fermer votre session sur cet appareil ?")}
+            </Text>
+            <View style={styles.logoutModalActions}>
+              <Pressable
+                style={({ pressed }) => [styles.cancelButton, pressed && styles.logoutButtonPressed]}
+                onPress={() => setShowLogoutModal(false)}
+              >
+                <Text style={styles.cancelButtonText}>{t("Annuler")}</Text>
+              </Pressable>
+              <Pressable
+                style={({ pressed }) => [styles.confirmLogoutButton, pressed && styles.logoutButtonPressed]}
+                onPress={() => {
+                  setShowLogoutModal(false);
+                  logout();
+                }}
+              >
+                <Text style={styles.confirmLogoutText}>{t("Se déconnecter")}</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
@@ -230,19 +247,33 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   centered: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.background },
-  avatarWrap: { alignItems: "center", marginBottom: spacing.xxl },
+  avatarWrap: {
+    alignItems: "center",
+    backgroundColor: colors.primaryDark,
+    marginHorizontal: -spacing.lg,
+    marginTop: -spacing.lg,
+    marginBottom: spacing.xxl,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.xl,
+    paddingBottom: spacing.xxl,
+    borderBottomLeftRadius: radii.xl,
+    borderBottomRightRadius: radii.xl,
+    ...shadows.card,
+  },
+  pageEyebrow: { ...typography.tiny, color: colors.accentSky, letterSpacing: 0.8, marginBottom: spacing.md },
   avatar: {
     width: 88,
     height: 88,
     borderRadius: 44,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.accentSky,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: spacing.md,
   },
   avatarInitial: { ...typography.display, color: colors.white },
-  name: { ...typography.h2, color: colors.textPrimary },
-  contact: { ...typography.body, color: colors.textSecondary },
+  greeting: { ...typography.caption, color: "rgba(255,255,255,0.78)" },
+  name: { ...typography.h1, color: colors.white, textAlign: "center", marginTop: 2, maxWidth: "100%", flexShrink: 1 },
+  contact: { ...typography.body, color: "rgba(255,255,255,0.78)", marginTop: spacing.xs, maxWidth: "100%", flexShrink: 1 },
   premiumBadge: {
     flexDirection: "row",
     alignItems: "center",
@@ -253,16 +284,20 @@ const styles = StyleSheet.create({
     marginTop: spacing.sm,
   },
   premiumActive: { backgroundColor: colors.accentGreen },
-  premiumFree: { backgroundColor: colors.surface },
+  premiumFree: { backgroundColor: colors.primarySoft },
   premiumBadgeText: { ...typography.tiny, color: colors.white },
-  referrer: { ...typography.caption, color: colors.textSecondary, marginTop: spacing.xs },
+  premiumFreeText: { color: colors.primary },
+  referrer: { ...typography.caption, color: "rgba(255,255,255,0.72)", marginTop: spacing.xs, maxWidth: "100%", flexShrink: 1 },
   sectionTitle: { ...typography.captionMedium, color: colors.textSecondary, marginBottom: spacing.sm, marginTop: spacing.lg },
+  sectionBlock: { backgroundColor: colors.surface, borderRadius: radii.lg, borderWidth: 1, borderColor: colors.border, overflow: "hidden", marginBottom: spacing.xl },
   profileCard: {
     backgroundColor: colors.surface,
     borderRadius: radii.lg,
-    padding: spacing.lg,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
     borderWidth: 1,
     borderColor: colors.border,
+    ...shadows.card,
   },
   filleulRow: {
     borderBottomWidth: 1,
@@ -275,59 +310,24 @@ const styles = StyleSheet.create({
   profileRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: spacing.sm,
+    alignItems: "flex-start",
+    minHeight: 48,
+    paddingVertical: spacing.md,
     gap: spacing.md,
   },
-  rowAction: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing.xs,
-    flexShrink: 1,
-  },
-  chooseButton: {
-    marginTop: spacing.sm,
-    marginBottom: spacing.md,
-    alignSelf: "flex-start",
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    borderRadius: radii.md,
-  },
-  chooseButtonText: { ...typography.body, color: colors.primary },
-  modalOverlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.4)", justifyContent: "flex-end" },
-  modalContent: { backgroundColor: colors.background, padding: spacing.lg, borderTopLeftRadius: radii.lg, borderTopRightRadius: radii.lg, maxHeight: "70%" },
-  modalHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", gap: spacing.md, marginBottom: spacing.sm },
-  modalTitle: { ...typography.h2, color: colors.textPrimary, flex: 1, flexShrink: 1 },
-  modalItem: { paddingVertical: spacing.md, borderBottomWidth: 1, borderBottomColor: colors.border },
-  modalItemActive: { backgroundColor: `${colors.primary}0D` },
-  modalItemText: { ...typography.body, color: colors.textPrimary },
-  modalItemTextActive: { color: colors.primary },
-  profileLabel: { ...typography.caption, color: colors.textSecondary, flex: 1, flexShrink: 1 },
-  profileValue: { ...typography.body, color: colors.textPrimary, textAlign: "right", maxWidth: "70%" },
-  statusMessage: { ...typography.captionMedium, color: colors.textSecondary, marginVertical: spacing.sm, textAlign: "center" },
-  saveButton: {
-    backgroundColor: colors.primary,
-    borderRadius: radii.md,
-    padding: spacing.lg,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: spacing.lg,
-  },
-  saveButtonDisabled: { opacity: 0.7 },
-  saveButtonText: { ...typography.bodyMedium, color: colors.white },
+  profileLabel: { ...typography.caption, color: colors.textSecondary, flex: 0.9, flexShrink: 1 },
+  profileValue: { ...typography.body, color: colors.textPrimary, flex: 1.1, textAlign: "right", flexShrink: 1, minWidth: 0 },
   linkCard: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.surface,
-    borderRadius: radii.md,
-    padding: spacing.lg,
-    marginBottom: spacing.sm,
-    borderWidth: 1,
-    borderColor: colors.border,
+    borderRadius: 0,
+    padding: spacing.md,
+    minHeight: 68,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
   },
+  linkCardPressed: { opacity: 0.72 },
   linkCardIcon: {
     width: 40,
     height: 40,
@@ -337,16 +337,41 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: spacing.md,
   },
-  linkCardTextWrap: { flex: 1 },
-  linkCardTitle: { ...typography.bodyMedium, color: colors.textPrimary, marginBottom: spacing.xs },
-  linkCardSubtitle: { ...typography.caption, color: colors.textSecondary },
+  linkCardTextWrap: { flex: 1, minWidth: 0 },
+  linkCardTitle: { ...typography.bodyMedium, color: colors.textPrimary, marginBottom: spacing.xs, flexShrink: 1 },
+  linkCardSubtitle: { ...typography.caption, color: colors.textSecondary, flexShrink: 1 },
   logoutButton: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: `${colors.error}0D`,
+    borderWidth: 1,
+    borderColor: `${colors.error}40`,
+    borderRadius: radii.md,
+    minHeight: 72,
+    padding: spacing.md,
     gap: spacing.sm,
-    marginTop: spacing.xxxl,
-    padding: spacing.lg,
+    marginBottom: spacing.lg,
   },
   logoutText: { ...typography.bodyMedium, color: colors.error },
+  logoutSubtitle: { ...typography.caption, color: colors.textSecondary, marginTop: 2, flexShrink: 1 },
+  logoutIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: radii.full,
+    backgroundColor: colors.surface,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logoutCopy: { flex: 1, minWidth: 0 },
+  logoutButtonPressed: { opacity: 0.7 },
+  logoutOverlay: { flex: 1, backgroundColor: colors.overlay, alignItems: "center", justifyContent: "center", padding: spacing.xl },
+  logoutModal: { width: "100%", maxWidth: 420, backgroundColor: colors.surface, borderRadius: radii.lg, padding: spacing.xl, alignItems: "center", ...shadows.floating },
+  logoutModalIcon: { width: 52, height: 52, borderRadius: radii.full, backgroundColor: `${colors.error}12`, alignItems: "center", justifyContent: "center", marginBottom: spacing.md },
+  logoutModalTitle: { ...typography.h2, color: colors.textPrimary, textAlign: "center" },
+  logoutModalText: { ...typography.body, color: colors.textSecondary, textAlign: "center", marginTop: spacing.xs, lineHeight: 22 },
+  logoutModalActions: { flexDirection: "row", width: "100%", gap: spacing.sm, marginTop: spacing.xl },
+  cancelButton: { flex: 1, minHeight: 48, borderRadius: radii.md, borderWidth: 1, borderColor: colors.border, alignItems: "center", justifyContent: "center", paddingHorizontal: spacing.sm },
+  confirmLogoutButton: { flex: 1, minHeight: 48, borderRadius: radii.md, backgroundColor: colors.error, alignItems: "center", justifyContent: "center", paddingHorizontal: spacing.sm },
+  cancelButtonText: { ...typography.bodyMedium, color: colors.textSecondary },
+  confirmLogoutText: { ...typography.bodyMedium, color: colors.white, textAlign: "center" },
 });

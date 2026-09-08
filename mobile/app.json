@@ -38,7 +38,8 @@
           "backgroundColor": "#122B6E"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-notifications"
     ],
     "extra": {
       "router": {}

@@ -2,7 +2,7 @@
 Point d'entrée ASGI de KOUROU AI.
 
 Utilisé en production via `gunicorn config.asgi:application -k uvicorn_worker.UvicornWorker`
-afin que les réponses en streaming (Server-Sent Events du tuteur IA) ne
+afin que les réponses en streaming (Server-Sent Events de Kourou AI) ne
 bloquent pas un worker synchrone entier pendant toute la durée du flux.
 """
 import os

@@ -2,15 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import { Link, Stack } from "expo-router";
 
 import { colors, spacing, typography } from "@/theme";
+import { useLanguage } from "@/i18n";
 
 export default function NotFoundScreen() {
+  const { t } = useLanguage();
   return (
     <>
-      <Stack.Screen options={{ title: "Page introuvable" }} />
+      <Stack.Screen options={{ title: t("Page introuvable") }} />
       <View style={styles.container}>
-        <Text style={styles.title}>Cette page n&apos;existe pas.</Text>
+        <Text style={styles.title}>{t("Cette page n'existe pas.")}</Text>
         <Link href="/(tabs)" style={styles.link}>
-          <Text style={styles.linkText}>Retour à l&apos;accueil</Text>
+          <Text style={styles.linkText}>{t("Retour à l'accueil")}</Text>
         </Link>
       </View>
     </>

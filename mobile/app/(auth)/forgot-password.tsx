@@ -4,16 +4,19 @@ import { router } from "expo-router";
 
 import { Button } from "@/components/Button";
 import { ErrorBanner } from "@/components/ErrorBanner";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ScreenContainer } from "@/components/ScreenContainer";
 import { TextField } from "@/components/TextField";
 import { useConfirmPasswordResetMutation, useRequestPasswordResetMutation } from "@/store/api/authApi";
 import { colors, spacing, typography } from "@/theme";
+import { useLanguage } from "@/i18n";
 
 export default function ForgotPasswordScreen() {
   const [step, setStep] = useState<"request" | "confirm">("request");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const { t } = useLanguage();
 
   const [requestReset, { isLoading: isRequesting, error: requestError }] = useRequestPasswordResetMutation();
   const [confirmReset, { isLoading: isConfirming, error: confirmError }] = useConfirmPasswordResetMutation();
@@ -36,19 +39,20 @@ export default function ForgotPasswordScreen() {
 
   return (
     <ScreenContainer scrollable>
+      <LanguageSwitcher />
       <View style={styles.header}>
-        <Text style={styles.title}>Mot de passe oublié</Text>
+        <Text style={styles.title}>{t("Mot de passe oublié")}</Text>
         <Text style={styles.subtitle}>
           {step === "request"
-            ? "Indiquez l'adresse e-mail associée à votre compte."
-            : "Saisissez le code reçu par e-mail et votre nouveau mot de passe."}
+            ? t("Indiquez l'adresse e-mail associée à votre compte.")
+            : t("Saisissez le code reçu par e-mail et votre nouveau mot de passe.")}
         </Text>
       </View>
 
       <ErrorBanner error={step === "request" ? requestError : confirmError} />
 
       <TextField
-        label="Adresse e-mail"
+        label={t("Adresse e-mail")}
         placeholder="vous@exemple.com"
         autoCapitalize="none"
         keyboardType="email-address"
@@ -59,7 +63,7 @@ export default function ForgotPasswordScreen() {
 
       {step === "request" ? (
         <Button
-          label="Recevoir le code"
+          label={t("Recevoir le code")}
           onPress={handleRequest}
           loading={isRequesting}
           disabled={!isValidEmail}
@@ -67,7 +71,7 @@ export default function ForgotPasswordScreen() {
       ) : (
         <>
           <TextField
-            label="Code reçu par e-mail"
+            label={t("Code reçu par e-mail")}
             placeholder="000000"
             keyboardType="number-pad"
             maxLength={6}
@@ -75,14 +79,14 @@ export default function ForgotPasswordScreen() {
             onChangeText={setCode}
           />
           <TextField
-            label="Nouveau mot de passe"
-            placeholder="8 caractères minimum"
+            label={t("Nouveau mot de passe")}
+            placeholder={t("8 caractères minimum")}
             secureTextEntry
             value={newPassword}
             onChangeText={setNewPassword}
           />
           <Button
-            label="Réinitialiser le mot de passe"
+            label={t("Réinitialiser le mot de passe")}
             onPress={handleConfirm}
             loading={isConfirming}
             disabled={code.length !== 6 || newPassword.length < 8}

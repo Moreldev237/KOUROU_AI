@@ -16,8 +16,8 @@ logger = logging.getLogger("apps")
 REDIS_TTL_SECONDS = 60 * 60 * 6  # 6h — copie rapide en Redis d'un résultat déjà en base
 
 
-def build_cache_key(*, exam_id: int, subject_id: int, topic_id: int | None, mode: str, difficulty: str, question_count: int) -> str:
-    raw = f"v1:{exam_id}:{subject_id}:{topic_id or 0}:{mode}:{difficulty}:{question_count}"
+def build_cache_key(*, exam_id: int, subject_id: int, topic_id: int | None, mode: str, difficulty: str, question_count: int, language: str = "fr") -> str:
+    raw = f"v2:{language}:{exam_id}:{subject_id}:{topic_id or 0}:{mode}:{difficulty}:{question_count}"
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 

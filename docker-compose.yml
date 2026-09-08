@@ -5,7 +5,7 @@ x-backend-env: &backend-env
   # POSTGRES_HOST=localhost / REDIS_URL=redis://localhost:6379/... : à
   # l'intérieur du réseau Docker Compose, ces services s'appellent "db" et
   # "redis", pas "localhost". On surcharge donc explicitement ces variables
-  # réseau ici ; le reste (SECRET_KEY, GEMINI_API_KEY, CINETPAY_*, etc.)
+  # réseau ici ; le reste (SECRET_KEY, GEMINI_API_KEY, KPAY_*, etc.)
   # continue de venir du .env.
   environment:
     POSTGRES_HOST: db

@@ -34,7 +34,7 @@ class ExamListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Exam
-        fields = ["id", "name", "code", "organizing_body", "icon_emoji", "color_hex", "subjects_count"]
+        fields = ["id", "name", "code", "organizing_body", "icon_emoji", "color_hex", "cover_image_url", "subjects_count"]
 
 
 class ExamDetailSerializer(serializers.ModelSerializer):
@@ -50,5 +50,6 @@ class ExamDetailSerializer(serializers.ModelSerializer):
             "organizing_body",
             "icon_emoji",
             "color_hex",
+            "cover_image_url",
             "subjects",
         ]

@@ -51,6 +51,7 @@ export interface ExamListItem {
   organizing_body: string;
   icon_emoji: string;
   color_hex: string;
+  cover_image_url: string;
   subjects_count: number;
 }
 
@@ -132,6 +133,7 @@ export interface QCMSessionListItem {
   id: string;
   exam_name: string;
   subject_name: string;
+  topic_name: string | null;
   difficulty: Difficulty;
   started_at: string;
   completed_at: string | null;
@@ -180,6 +182,21 @@ export interface UserQuota {
   last_reset_date: string;
 }
 
+export interface PlatformStats {
+  total_users: number;
+  active_premium_users: number;
+  new_users_last_7_days: number;
+  total_qcm_sessions: number;
+  cache_hit_rate_percent: number;
+  total_cached_generations: number;
+  total_cache_hits_lifetime: number;
+  total_tokens_consumed: number;
+  total_tokens_consumed_last_30_days: number;
+  estimated_ai_cost_fcfa_last_30_days: number;
+  total_revenue_fcfa: number;
+  revenue_last_30_days_fcfa: number;
+}
+
 // --- Paiements -------------------------------------------------------------------
 
 export type BillingCycle = "one_time" | "monthly";
@@ -191,10 +208,21 @@ export interface SubscriptionPlan {
   description: string;
   exam: number | null;
   exam_name: string | null;
+  exam_category: string | null;
+  exam_cover_image: string | null;
   billing_cycle: BillingCycle;
   price_fcfa: number;
   duration_days: number;
   is_unlimited_generation: boolean;
+}
+
+export interface UnlockedPack {
+  id: number;
+  code: string;
+  plan_name: string;
+  description: string;
+  google_drive_url: string;
+  access_until: string;
 }
 
 export type TransactionStatus = "pending" | "completed" | "failed";

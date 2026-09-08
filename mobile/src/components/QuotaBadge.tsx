@@ -4,9 +4,11 @@ import { router } from "expo-router";
 
 import { useGetMyQuotaQuery } from "@/store/api/quotasApi";
 import { colors, radii, spacing, typography } from "@/theme";
+import { useLanguage } from "@/i18n";
 
 export function QuotaBadge() {
   const { data: quota } = useGetMyQuotaQuery();
+  const { t } = useLanguage();
 
   if (!quota) return null;
 
@@ -14,7 +16,7 @@ export function QuotaBadge() {
     return (
       <View style={[styles.badge, styles.unlimited]}>
         <Ionicons name="infinite" size={14} color={colors.white} />
-        <Text style={styles.unlimitedText}>Illimité</Text>
+        <Text style={styles.unlimitedText}>{t("Illimité")}</Text>
       </View>
     );
   }
@@ -27,13 +29,13 @@ export function QuotaBadge() {
       <View style={[styles.badge, isLow ? styles.low : styles.normal]}>
         <Ionicons name="flash" size={14} color={isLow ? colors.error : colors.primary} />
         <Text style={[styles.text, isLow && styles.lowText]}>
-          {quota.remaining} / {quota.daily_limit} aujourd&apos;hui
+          {quota.remaining} / {quota.daily_limit} {t("today")}
         </Text>
       </View>
 
-      {isExhausted ? (
+      {isLow ? (
         <Pressable style={styles.upgradeButton} onPress={() => router.push("/(tabs)/subscription") }>
-          <Text style={styles.upgradeButtonText}>Passer Premium</Text>
+          <Text style={styles.upgradeButtonText}>{t(isExhausted ? "Passer Premium" : "Voir les offres")}</Text>
         </Pressable>
       ) : null}
     </View>

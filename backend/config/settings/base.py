@@ -217,17 +217,20 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 GEMINI_API_KEY = env("GEMINI_API_KEY", default="")
 # Voir .env.example : garder ce nom de modèle configurable, les modèles Gemini
 # étant renouvelés fréquemment par Google.
-GEMINI_MODEL_NAME = env("GEMINI_MODEL_NAME", default="gemini-3.6-flash")
+GEMINI_MODEL_NAME = env("GEMINI_MODEL_NAME", default="gemini-3.8-flash")
+GEMINI_FALLBACK_MODEL_NAME = env("GEMINI_FALLBACK_MODEL_NAME", default="gemini-3.6-flash")
 GEMINI_ENABLE_CONTEXT_CACHING = env.bool("GEMINI_ENABLE_CONTEXT_CACHING", default=True)
 
 # --- Paiement Mobile Money (Module 4) --------------------------------------------
-PAYMENT_GATEWAY = env("PAYMENT_GATEWAY", default="cinetpay")
-CINETPAY_API_KEY = env("CINETPAY_API_KEY", default="")
-CINETPAY_SITE_ID = env("CINETPAY_SITE_ID", default="")
-CINETPAY_BASE_URL = env("CINETPAY_BASE_URL", default="https://api-checkout.cinetpay.com/v2")
-CINETPAY_CURRENCY = env("CINETPAY_CURRENCY", default="XAF")
+PAYMENT_GATEWAY = env("PAYMENT_GATEWAY", default="kpay")
+KPAY_API_KEY = env("KPAY_API_KEY", default="")
+KPAY_SECRET_KEY = env("KPAY_SECRET_KEY", default="")
+KPAY_WEBHOOK_SECRET = env("KPAY_WEBHOOK_SECRET", default="")
+KPAY_BASE_URL = env("KPAY_BASE_URL", default="https://admin.kpay.site")
+KPAY_CURRENCY = env("KPAY_CURRENCY", default="XAF")
 PAYMENT_NOTIFY_URL = env("PAYMENT_NOTIFY_URL", default="")
 PAYMENT_RETURN_URL = env("PAYMENT_RETURN_URL", default="")
+PAYMENT_CANCEL_URL = env("PAYMENT_CANCEL_URL", default="")
 
 # --- Quotas (Module 3) -----------------------------------------------------------
 FREE_DAILY_GENERATION_LIMIT = env.int("FREE_DAILY_GENERATION_LIMIT", default=5)

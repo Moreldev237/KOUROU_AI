@@ -9,13 +9,18 @@ from .models import Difficulty, Question, QCMSession, SessionMode, TutorConversa
 class GenerateQCMRequestSerializer(serializers.Serializer):
     exam = serializers.PrimaryKeyRelatedField(queryset=Exam.objects.filter(is_active=True))
     subject = serializers.PrimaryKeyRelatedField(queryset=Subject.objects.all())
+    topic = serializers.PrimaryKeyRelatedField(queryset=Topic.objects.all(), required=False, allow_null=True)
     mode = serializers.ChoiceField(choices=SessionMode.choices, default=SessionMode.QCM_BATCH)
     difficulty = serializers.ChoiceField(choices=Difficulty.choices, default=Difficulty.MOYEN)
     question_count = serializers.IntegerField(min_value=1, max_value=20, default=10)
+    language = serializers.ChoiceField(choices=[("fr", "Français"), ("en", "English")], default="fr")
 
     def validate(self, attrs):
         if attrs["subject"].exam_id != attrs["exam"].id:
             raise serializers.ValidationError({"subject": "Cette matière n'appartient pas au concours sélectionné."})
+        topic = attrs.get("topic")
+        if topic is not None and topic.subject_id != attrs["subject"].id:
+            raise serializers.ValidationError({"topic": "Ce thème n'appartient pas à la matière sélectionnée."})
         return attrs
 
 
@@ -83,6 +88,7 @@ class QCMSessionListSerializer(serializers.ModelSerializer):
 
     exam_name = serializers.CharField(source="exam.name", read_only=True)
     subject_name = serializers.CharField(source="subject.name", read_only=True)
+    topic_name = serializers.CharField(source="topic.name", read_only=True, allow_null=True, default=None)
     question_count = serializers.IntegerField(source="questions.count", read_only=True)
 
     class Meta:
@@ -91,6 +97,7 @@ class QCMSessionListSerializer(serializers.ModelSerializer):
             "id",
             "exam_name",
             "subject_name",
+            "topic_name",
             "difficulty",
             "started_at",
             "completed_at",
@@ -150,3 +157,4 @@ class TutorChatRequestSerializer(serializers.Serializer):
     topic = serializers.PrimaryKeyRelatedField(queryset=Topic.objects.all(), required=False, allow_null=True)
     message = serializers.CharField(max_length=4000)
     documents = TutorDocumentSerializer(many=True, required=False)
+    language = serializers.ChoiceField(choices=[("fr", "Français"), ("en", "English")], default="fr")

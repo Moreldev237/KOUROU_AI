@@ -10,7 +10,7 @@ urlpatterns = [
     path("qcm/answer/", views.SubmitAnswerView.as_view(), name="qcm-answer"),
     path("qcm/history/", views.QCMSessionHistoryView.as_view(), name="qcm-history"),
     path("qcm/sessions/<uuid:id>/", views.QCMSessionDetailView.as_view(), name="qcm-session-detail"),
-    # Tuteur IA
+    # Kourou AI
     path("tutor/chat/", views.TutorChatView.as_view(), name="tutor-chat"),
     path("tutor/conversations/", views.TutorConversationListView.as_view(), name="tutor-conversations"),
     path(

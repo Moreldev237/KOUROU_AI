@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from .base import PaymentGateway
-from .cinetpay import CinetPayGateway
+from .kpay import KPayGateway
 
 __all__ = ["get_gateway", "PaymentGateway"]
 
@@ -16,9 +16,7 @@ def get_gateway() -> PaymentGateway:
     changer.
     """
     gateways = {
-        "cinetpay": CinetPayGateway,
-        # "monetbil": MonetbilGateway,   # à implémenter sur le même modèle
-        # "notchpay": NotchPayGateway,   # à implémenter sur le même modèle
+        "kpay": KPayGateway,
     }
     gateway_cls = gateways.get(settings.PAYMENT_GATEWAY)
     if gateway_cls is None:

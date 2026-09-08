@@ -37,7 +37,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="tutor"
         options={{
-          title: "Kourou IA",
+          title: "Kourou AI",
           tabBarIcon: ({ color, size }) => <Ionicons name="chatbubbles" size={size} color={color} />,
         }}
       />
@@ -55,6 +55,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />,
         }}
       />
+      <Tabs.Screen name="history" options={{ href: null }} />
     </Tabs>
   );
 }

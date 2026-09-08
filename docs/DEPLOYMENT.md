@@ -38,9 +38,10 @@ POSTGRES_PASSWORD=<mot de passe robuste>
 GEMINI_API_KEY=<clé réelle>
 GEMINI_MODEL_NAME=<vérifier le modèle courant sur ai.google.dev/gemini-api/docs/models>
 
-CINETPAY_API_KEY=<clé réelle>
-CINETPAY_SITE_ID=<site_id réel>
-PAYMENT_NOTIFY_URL=https://api.kourou-ai.cm/api/payments/webhook/cinetpay/
+KPAY_API_KEY=<clé kpay_test_ ou kpay_live_>
+KPAY_SECRET_KEY=<clé secrète KPay>
+KPAY_WEBHOOK_SECRET=<secret webhook KPay>
+PAYMENT_NOTIFY_URL=https://api.kourou-ai.cm/api/payments/webhook/kpay/
 PAYMENT_RETURN_URL=https://api.kourou-ai.cm/paiement/retour
 
 SMS_BACKEND=<votre fournisseur SMS — voir apps/accounts/services.py>
@@ -120,8 +121,8 @@ docker compose exec backend python manage.py migrate
 - [ ] `SECRET_KEY` régénérée (ne jamais garder celle de développement)
 - [ ] `DEBUG=False` et `ALLOWED_HOSTS` explicite
 - [ ] Clé Gemini + nom de modèle vérifiés à jour
-- [ ] Compte marchand CinetPay en mode production (pas sandbox)
-- [ ] `PAYMENT_NOTIFY_URL` accessible publiquement en HTTPS (CinetPay doit pouvoir l'appeler)
+- [ ] Compte KPay validé et clé `kpay_live_` en production
+- [ ] `PAYMENT_NOTIFY_URL` configurée dans KPay et accessible en HTTPS
 - [ ] Fournisseur SMS réel branché (`SMS_BACKEND`)
 - [ ] Sauvegardes PostgreSQL automatisées
 - [ ] `python manage.py setup_periodic_tasks` exécuté (reset quotidien des quotas)

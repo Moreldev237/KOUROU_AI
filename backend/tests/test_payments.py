@@ -1,9 +1,28 @@
+import hashlib
+import hmac
+import json
+from datetime import timedelta
 from unittest.mock import patch
 
 import pytest
+from django.test import override_settings
+from django.utils import timezone
 
 from apps.payments.gateways.base import InitiationResult, VerificationResult
 from apps.payments.models import Subscription, Transaction, TransactionStatus
+
+
+WEBHOOK_SECRET = "1de45267ea102cdde9b48dc86a98b2ae47a10bbd2ae8614d648def51386ac51c"
+
+def post_kpay_webhook(api_client, payload):
+    body = json.dumps(payload).encode()
+    signature = hmac.new(WEBHOOK_SECRET.encode(), body, hashlib.sha256).hexdigest()
+    return api_client.post(
+        "/api/payments/webhook/kpay/",
+        body,
+        content_type="application/json",
+        HTTP_X_KPAY_SIGNATURE=signature,
+    )
 
 
 @pytest.mark.django_db
@@ -21,13 +40,13 @@ class TestInitiatePayment:
     def test_initiate_creates_pending_transaction(self, mock_get_gateway, auth_client, registered_user, plan):
         mock_gateway = mock_get_gateway.return_value
         mock_gateway.initiate_payment.return_value = InitiationResult(
-            payment_url="https://checkout.cinetpay.com/fake", provider_transaction_id="fake-id", raw_response={}
+            payment_url="https://admin.kpay.site/gateway/fake", provider_transaction_id="pay-fake", raw_response={}
         )
 
         response = auth_client.post("/api/payments/initiate/", {"plan": plan.id}, format="json")
 
         assert response.status_code == 201
-        assert response.data["payment_url"] == "https://checkout.cinetpay.com/fake"
+        assert response.data["payment_url"] == "https://admin.kpay.site/gateway/fake"
         txn = Transaction.objects.get(user=registered_user, plan=plan)
         assert txn.status == TransactionStatus.PENDING
 
@@ -46,7 +65,8 @@ class TestPaymentWebhookAndSubscriptionActivation:
             is_successful=True, provider_status="ACCEPTED", raw_response={}
         )
 
-        response = api_client.post("/api/payments/webhook/cinetpay/", {"cpm_trans_id": "txn-123"})
+        with override_settings(KPAY_WEBHOOK_SECRET=WEBHOOK_SECRET):
+            response = post_kpay_webhook(api_client, {"paymentId": "txn-123", "status": "COMPLETED"})
         assert response.status_code == 200
 
         txn.refresh_from_db()
@@ -65,8 +85,9 @@ class TestPaymentWebhookAndSubscriptionActivation:
             is_successful=True, provider_status="ACCEPTED", raw_response={}
         )
 
-        api_client.post("/api/payments/webhook/cinetpay/", {"cpm_trans_id": "txn-456"})
-        api_client.post("/api/payments/webhook/cinetpay/", {"cpm_trans_id": "txn-456"})  # rejoué par CinetPay
+        with override_settings(KPAY_WEBHOOK_SECRET=WEBHOOK_SECRET):
+            post_kpay_webhook(api_client, {"paymentId": "txn-456", "status": "COMPLETED"})
+            post_kpay_webhook(api_client, {"paymentId": "txn-456", "status": "COMPLETED"})
 
         assert Subscription.objects.filter(user=registered_user, plan=plan).count() == 1
 
@@ -82,8 +103,27 @@ class TestPaymentWebhookAndSubscriptionActivation:
             is_successful=False, provider_status="REFUSED", raw_response={}
         )
 
-        api_client.post("/api/payments/webhook/cinetpay/", {"cpm_trans_id": "txn-789"})
+        with override_settings(KPAY_WEBHOOK_SECRET=WEBHOOK_SECRET):
+            post_kpay_webhook(api_client, {"paymentId": "txn-789", "status": "FAILED"})
 
         registered_user.refresh_from_db()
         assert registered_user.is_premium is False
         assert not Subscription.objects.filter(user=registered_user, plan=plan).exists()
+
+    def test_unlocked_pack_requires_active_subscription(self, auth_client, registered_user, plan):
+        plan.google_drive_url = "https://drive.google.com/drive/folders/test-pack"
+        plan.save(update_fields=["google_drive_url"])
+
+        response = auth_client.get("/api/payments/packs/me/")
+        assert response.status_code == 200
+        assert response.data == []
+
+        Subscription.objects.create(
+            user=registered_user,
+            plan=plan,
+            status="active",
+            end_date=timezone.now() + timedelta(days=30),
+        )
+        response = auth_client.get("/api/payments/packs/me/")
+        assert response.status_code == 200
+        assert response.data[0]["google_drive_url"] == plan.google_drive_url

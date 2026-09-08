@@ -1,8 +1,8 @@
 """
 Interface commune à toute passerelle de paiement Mobile Money.
 
-Le cahier des charges laisse le choix de l'agrégateur (Monetbil / Notch Pay /
-CinetPay) : cette abstraction permet d'en changer — ou d'en ajouter un second
+Le cahier des charges laisse le choix de l'agrégateur : cette abstraction permet
+d'en changer — ou d'en ajouter un second
 — sans toucher au reste du projet. Pour ajouter Monetbil ou Notch Pay, il
 suffit d'implémenter cette interface dans un nouveau fichier de ce dossier
 (ex: gateways/monetbil.py) et de l'enregistrer dans gateways/__init__.py.

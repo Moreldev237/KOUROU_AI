@@ -11,6 +11,7 @@ interface SendMessageParams {
   subject?: number | null;
   topic?: number | null;
   documents?: { name: string; content: string; encoding?: "base64" }[];
+  language?: "fr" | "en";
 }
 
 type TutorSSEEvent = "meta" | "message" | "done" | "error";
@@ -21,6 +22,7 @@ interface UseTutorStreamResult {
   error: string | null;
   sendMessage: (params: SendMessageParams) => void;
   stop: () => void;
+  retry: () => void;
 }
 
 /**
@@ -43,6 +45,7 @@ export function useTutorStream(onDone?: (fullText: string, conversationId: strin
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const esRef = useRef<EventSource<TutorSSEEvent> | null>(null);
+  const lastParamsRef = useRef<SendMessageParams | null>(null);
 
   const stop = useCallback(() => {
     esRef.current?.close();
@@ -52,6 +55,7 @@ export function useTutorStream(onDone?: (fullText: string, conversationId: strin
 
   const sendMessage = useCallback(
     (params: SendMessageParams) => {
+      lastParamsRef.current = params;
       setError(null);
       setStreamingText("");
       setIsStreaming(true);
@@ -62,9 +66,15 @@ export function useTutorStream(onDone?: (fullText: string, conversationId: strin
       let localConversationId: string | null = params.conversation ?? null;
 
       (async () => {
-        const token = await getAccessToken();
+        try {
+          const token = await getAccessToken();
+          if (!token) {
+            setError("Votre session a expiré. Reconnectez-vous pour utiliser Kourou AI.");
+            setIsStreaming(false);
+            return;
+          }
 
-        const es = new EventSource<TutorSSEEvent>(`${API_BASE_URL}/api/ai/tutor/chat/`, {
+          const es = new EventSource<TutorSSEEvent>(`${API_BASE_URL}/api/ai/tutor/chat/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -78,12 +88,13 @@ export function useTutorStream(onDone?: (fullText: string, conversationId: strin
             subject: params.subject ?? undefined,
             topic: params.topic ?? undefined,
             documents: params.documents ?? undefined,
+            language: params.language ?? "fr",
           }),
           pollingInterval: 0, // réponse à usage unique : pas de reconnexion automatique
         });
-        esRef.current = es;
+          esRef.current = es;
 
-        es.addEventListener("meta", (event: EventSourceEvent<"meta">) => {
+          es.addEventListener("meta", (event: EventSourceEvent<"meta">) => {
           try {
             const data = JSON.parse(event.data ?? "{}");
             localConversationId = data.conversation_id ?? localConversationId;
@@ -92,26 +103,45 @@ export function useTutorStream(onDone?: (fullText: string, conversationId: strin
           }
         });
 
-        es.addEventListener("message", (event: EventSourceEvent<"message">) => {
+          es.addEventListener("message", (event: EventSourceEvent<"message">) => {
           buffer += event.data ?? "";
           setStreamingText(buffer);
         });
 
-        es.addEventListener("error", (event: EventSourceEvent<"error"> | any) => {
-          setError(event?.data || "Le Kourou IA est momentanément indisponible. Réessayez.");
-          setIsStreaming(false);
-          es.close();
-        });
+          es.addEventListener("error", (event: EventSourceEvent<"error"> | any) => {
+            const status = event?.status ?? event?.statusCode;
+            const detail = typeof event?.data === "string" && event.data.trim() ? event.data.trim() : "";
+            const message = status === 429
+              ? "Trop de demandes en peu de temps. La limite est de 20 messages par minute. Patientez une minute avant de réessayer."
+              : status === 401
+                ? "Votre session a expiré. Reconnectez-vous pour utiliser Kourou AI."
+                : status === 429
+                  ? "Votre quota de messages journaliers est épuisé. Réessayez demain ou souscrivez un abonnement."
+                  : status === 502
+                    ? "Le moteur IA est momentanément indisponible. Réessayez dans quelques instants."
+                    : detail || "La connexion avec Kourou AI a été interrompue. Vérifiez votre connexion puis réessayez.";
+            setError(message);
+            setIsStreaming(false);
+            es.close();
+          });
 
-        es.addEventListener("done", () => {
+          es.addEventListener("done", () => {
+            setIsStreaming(false);
+            es.close();
+            onDone?.(buffer, localConversationId);
+          });
+        } catch {
+          setError("Impossible de joindre Kourou AI. Vérifiez votre connexion puis réessayez.");
           setIsStreaming(false);
-          es.close();
-          onDone?.(buffer, localConversationId);
-        });
+        }
       })();
     },
     [onDone]
   );
 
-  return { streamingText, isStreaming, error, sendMessage, stop };
+  const retry = useCallback(() => {
+    if (lastParamsRef.current) sendMessage(lastParamsRef.current);
+  }, [sendMessage]);
+
+  return { streamingText, isStreaming, error, sendMessage, stop, retry };
 }

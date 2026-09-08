@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
             name='Transaction',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('gateway', models.CharField(default='cinetpay', max_length=30)),
+                ('gateway', models.CharField(default='kpay', max_length=30)),
                 ('provider_transaction_id', models.CharField(max_length=100, unique=True)),
                 ('amount_fcfa', models.PositiveIntegerField()),
                 ('status', models.CharField(choices=[('pending', 'En attente'), ('completed', 'Réussie'), ('failed', 'Échouée')], default='pending', max_length=20)),

@@ -1,5 +1,5 @@
 import { baseApi } from "@/store/api/baseApi";
-import type { Paginated, Subscription, SubscriptionPlan, Transaction } from "@/types";
+import type { Paginated, Subscription, SubscriptionPlan, Transaction, UnlockedPack } from "@/types";
 
 export const paymentsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -21,6 +21,11 @@ export const paymentsApi = baseApi.injectEndpoints({
       query: () => "/payments/subscription/me/",
       providesTags: ["Subscription"],
     }),
+
+    listUnlockedPacks: builder.query<UnlockedPack[], void>({
+      query: () => "/payments/packs/me/",
+      providesTags: ["Subscription"],
+    }),
   }),
 });
 
@@ -29,4 +34,5 @@ export const {
   useInitiatePaymentMutation,
   useListTransactionsQuery,
   useGetMySubscriptionQuery,
+  useListUnlockedPacksQuery,
 } = paymentsApi;

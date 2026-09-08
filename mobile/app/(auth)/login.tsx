@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 
 import { Button } from "@/components/Button";
 import { ErrorBanner } from "@/components/ErrorBanner";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ScreenContainer } from "@/components/ScreenContainer";
 import { TextField } from "@/components/TextField";
 import { useAuth } from "@/hooks/useAuth";
+import { useLanguage } from "@/i18n";
 import { useLoginMutation } from "@/store/api/authApi";
 import { colors, spacing, typography } from "@/theme";
 
@@ -15,6 +17,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [login, { isLoading, error }] = useLoginMutation();
   const { applyAuthResult } = useAuth();
+  const { t } = useLanguage();
 
   const handleSubmit = async () => {
     try {
@@ -27,16 +30,16 @@ export default function LoginScreen() {
 
   return (
     <ScreenContainer scrollable>
+      <LanguageSwitcher />
       <View style={styles.header}>
-        <Image source={require("@/../assets/icon.png")} style={styles.logo} />
-        <Text style={styles.title}>Content de vous revoir</Text>
-        <Text style={styles.subtitle}>Connectez-vous pour continuer votre préparation.</Text>
+        <Text style={styles.title}>{t("Content de vous revoir")}</Text>
+        <Text style={styles.subtitle}>{t("Connectez-vous pour continuer votre préparation.")}</Text>
       </View>
 
       <ErrorBanner error={error} />
 
       <TextField
-        label="Adresse e-mail"
+        label={t("Adresse e-mail")}
         placeholder="vous@exemple.com"
         autoCapitalize="none"
         keyboardType="email-address"
@@ -44,7 +47,7 @@ export default function LoginScreen() {
         onChangeText={setEmail}
       />
       <TextField
-        label="Mot de passe"
+        label={t("Mot de passe")}
         placeholder="••••••••"
         secureTextEntry
         value={password}
@@ -52,11 +55,11 @@ export default function LoginScreen() {
       />
 
       <Link href="/(auth)/forgot-password" asChild>
-        <Text style={styles.forgotLink}>Mot de passe oublié ?</Text>
+        <Text style={styles.forgotLink}>{t("Mot de passe oublié ?")}</Text>
       </Link>
 
       <Button
-        label="Se connecter"
+        label={t("Se connecter")}
         onPress={handleSubmit}
         loading={isLoading}
         disabled={!email || !password}
@@ -64,9 +67,9 @@ export default function LoginScreen() {
       />
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Pas encore de compte ?</Text>
+        <Text style={styles.footerText}>{t("Pas encore de compte ?")}</Text>
         <Link href="/(auth)/register">
-          <Text style={styles.footerLink}> Créer un compte</Text>
+          <Text style={styles.footerLink}> {t("Créer un compte")}</Text>
         </Link>
       </View>
     </ScreenContainer>
@@ -75,7 +78,6 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   header: { alignItems: "center", marginBottom: spacing.xxxl },
-  logo: { width: 72, height: 72, borderRadius: 18, marginBottom: spacing.lg },
   title: { ...typography.h1, color: colors.textPrimary, marginBottom: spacing.xs },
   subtitle: { ...typography.body, color: colors.textSecondary, textAlign: "center" },
   forgotLink: { ...typography.captionMedium, color: colors.primary, textAlign: "right", marginBottom: spacing.lg },

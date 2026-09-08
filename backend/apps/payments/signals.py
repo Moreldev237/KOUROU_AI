@@ -18,7 +18,7 @@ def grant_subscription_on_payment_success(sender, instance: Transaction, created
     """
     Module 4 : "Attribution instantanée des privilèges dès confirmation du
     webhook de paiement." Idempotent : si cette transaction a déjà généré un
-    abonnement (le webhook CinetPay peut être rappelé plusieurs fois), on ne
+    abonnement (le webhook KPay peut être rappelé plusieurs fois), on ne
     fait rien de plus.
     """
     if instance.status != TransactionStatus.COMPLETED:

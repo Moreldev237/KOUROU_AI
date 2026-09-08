@@ -95,15 +95,35 @@ def generate_qcm(
     else:
         config_kwargs["system_instruction"] = system_instruction
 
-    try:
-        response = get_client().models.generate_content(
-            model=settings.GEMINI_MODEL_NAME,
-            contents=prompt,
-            config=types.GenerateContentConfig(**config_kwargs),
-        )
-    except Exception as exc:  # pragma: no cover - dépend d'un service externe
-        logger.exception("Échec de l'appel Gemini (génération de QCM)")
-        raise AIGenerationError() from exc
+    model_names = [settings.GEMINI_MODEL_NAME]
+    fallback_model = getattr(settings, "GEMINI_FALLBACK_MODEL_NAME", "")
+    if fallback_model and fallback_model not in model_names:
+        model_names.append(fallback_model)
+
+    response = None
+    last_error = None
+    for index, model_name in enumerate(model_names):
+        model_config_kwargs = dict(config_kwargs)
+        if index > 0 and cached_content_name:
+            # Un cache de contexte Gemini est lié au modèle qui l'a créé.
+            model_config_kwargs.pop("cached_content", None)
+            model_config_kwargs["system_instruction"] = system_instruction
+        try:
+            response = get_client().models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(**model_config_kwargs),
+            )
+            break
+        except Exception as exc:  # pragma: no cover - dépend d'un service externe
+            last_error = exc
+            if index == len(model_names) - 1 or not _is_service_unavailable(exc):
+                logger.exception("Échec de l'appel Gemini (génération de QCM)")
+                raise AIGenerationError() from exc
+            logger.warning("Modèle Gemini indisponible (%s), tentative avec %s", model_name, model_names[index + 1])
+
+    if response is None:  # pragma: no cover - garde de typage
+        raise AIGenerationError() from last_error
 
     tokens_used = _extract_token_count(response)
 
@@ -116,9 +136,14 @@ def generate_qcm(
     return data, tokens_used
 
 
+def _is_service_unavailable(exc: Exception) -> bool:
+    """Détecte un 503 Gemini sans dépendre d'une classe interne du SDK."""
+    return getattr(exc, "code", None) == 503 or "503" in str(exc) or "UNAVAILABLE" in str(exc)
+
+
 def stream_tutor_reply(*, system_instruction: str, history: list[dict], user_message: str):
     """
-    Générateur produisant la réponse du tuteur IA morceau par morceau (pour le
+    Générateur produisant la réponse de Kourou AI morceau par morceau (pour le
     streaming SSE — voir ai_engine/views.py::TutorChatView). Le dernier élément
     produit est toujours un tuple `("__usage__", tokens_utilisés)`.
     """
@@ -137,7 +162,7 @@ def stream_tutor_reply(*, system_instruction: str, history: list[dict], user_mes
             if usage and getattr(usage, "total_token_count", None):
                 total_tokens = usage.total_token_count
     except Exception as exc:  # pragma: no cover - dépend d'un service externe
-        logger.exception("Échec du streaming Gemini (tuteur IA)")
+        logger.exception("Échec du streaming Gemini (Kourou AI)")
         raise AIGenerationError() from exc
 
     yield ("__usage__", total_tokens)

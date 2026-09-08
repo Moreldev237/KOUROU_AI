@@ -6,7 +6,7 @@
 ┌─────────────────────┐        HTTPS/JSON         ┌──────────────────────────┐
 │   Mobile (Expo)      │ ─────────────────────────> │   Nginx (reverse proxy)  │
 │   React Native + TS   │ <───────────────────────── │                          │
-└─────────────────────┘        SSE (tuteur IA)      └────────────┬─────────────┘
+└─────────────────────┘        SSE (Kourou AI)      └────────────┬─────────────┘
                                                                    │
                                                      ┌─────────────▼─────────────┐
                                                      │  Django (Gunicorn+Uvicorn) │
@@ -20,7 +20,7 @@
                                               └──────────┘ └────┬───┘ └──┬──────────┘
                                                                  │        │
                                                         ┌────────▼────────▼───┐
-                                                        │  Gemini API / CinetPay│
+                                                        │  Gemini API / KPay    │
                                                         │  (services externes)  │
                                                         └───────────────────────┘
 ```
@@ -41,7 +41,7 @@ backend/
     ├── exams/                # Catalogue des concours (ENAM, Police, Douanes, ENS…)
     ├── ai_engine/            # Module 2 — Génération IA, cache, tuteur (SSE)
     ├── quotas/               # Module 3 — Quotas gratuits, tokens consommés
-    ├── payments/             # Module 4 — CinetPay, abonnements
+    ├── payments/             # Module 4 — KPay, abonnements
     └── backoffice/           # Module 5 — Statistiques admin
 ```
 
@@ -74,7 +74,7 @@ Ce comportement est directement vérifié par les tests
 (`backend/tests/test_ai_engine.py::test_cache_hit_never_calls_gemini`, qui
 mocke Gemini et vérifie qu'il n'est **jamais appelé** sur un cache HIT).
 
-## 4. Streaming du tuteur IA (Server-Sent Events)
+## 4. Streaming de Kourou AI (Server-Sent Events)
 
 Le cahier des charges exige un rendu en streaming sous 3 secondes. Choix
 techniques :
@@ -102,11 +102,9 @@ techniques :
   `ai_generation`, `tutor_chat`, `payments`) + un throttle **par numéro de
   téléphone** dédié aux OTP (`common/throttling.py`), pour empêcher qu'un abus
   distribué sur plusieurs IP ne continue de spammer un même numéro.
-- **Paiement CinetPay** : le webhook de notification ne contient
-  volontairement pas le statut du paiement (anti-usurpation côté CinetPay).
-  `PaymentWebhookView` rappelle donc systématiquement l'API CinetPay en
-  serveur à serveur (`/v2/payment/check`) avant de créditer quoi que ce soit
-  — voir `apps/payments/gateways/cinetpay.py`.
+- **Paiement KPay** : le webhook est vérifié par HMAC sur le corps JSON brut,
+  puis `PaymentWebhookView` confirme systématiquement le statut KPay en
+  serveur à serveur (`GET /api/v1/payments/:id`) avant tout crédit.
 - **Clé Gemini** : uniquement côté serveur (variable d'environnement), jamais
   transmise au mobile.
 - **Suspension de comptes** (Module 5) : `User.suspend()` / actions admin
@@ -120,7 +118,7 @@ mobile/
 │   ├── (auth)/               # Connexion, inscription, OTP, mot de passe oublié
 │   ├── (tabs)/                # Accueil, Entraînement, Tuteur, Abonnement, Profil
 │   ├── qcm/[id].tsx           # Session de QCM en cours
-│   └── payment-webview.tsx    # Paiement Mobile Money (WebView CinetPay)
+│   └── payment-webview.tsx    # Paiement Mobile Money (WebView KPay)
 └── src/
     ├── api/                  # Stockage sécurisé des tokens
     ├── store/
